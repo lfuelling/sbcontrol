@@ -5,7 +5,7 @@
 //  Created by Lukas Fülling on 6/8/24.
 //
 
-import Foundation
+import SwiftUI
 import CoreBluetooth
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -21,6 +21,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     override init() {
         super.init()
+        log.info("Starting scan…")
         centralManager = CBCentralManager(delegate: self, queue: nil)
         centralManager.delegate = self
     }
@@ -29,20 +30,23 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if central.state == .poweredOn {
             centralManager.scanForPeripherals(withServices: nil, options: nil)
         } else {
-            print("Bluetooth not available.")
+            log.error("Bluetooth not available!")
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if !self.peripherals.contains(peripheral) && peripheral.name != nil {
+            log.info("Found device \"\(peripheral.name ?? "Unnamed")\"…")
             self.peripherals.append(peripheral)
         }
     }
     
     func connectDevice(peripheral: CBPeripheral) {
+        log.info("Stopping scan…")
         self.centralManager.stopScan()
         self.peripheral = peripheral
         self.peripheral.delegate = self
+        log.info("Connecting to \"\(peripheral.name ?? "Unnamed")\"…")
         self.centralManager.connect(self.peripheral, options: nil)
     }
     
@@ -63,6 +67,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                 case "10110001-5354-4f52-5a26-4249434b454c", // Current temperature
                      "10110003-5354-4f52-5a26-4249434b454c", // Set temperature
                     "1010000c-5354-4f52-5a26-4249434b454c": // stat1
+                    log.info("Activating notifications for \(characteristic.uuid.uuidString)…")
                     peripheral.setNotifyValue(true, for: characteristic)
                     peripheral.readValue(for: characteristic)
                 default:
@@ -77,24 +82,32 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             switch characteristic.uuid.uuidString.lowercased() {
             case "10110001-5354-4f52-5a26-4249434b454c": // Current temperature
                 let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                let currentTemperature = intValue / 10
-                self.currentTemperature = Int(currentTemperature)
+                let currentTemperature = Int(intValue / 10)
+                log.info("Received current temperature: \(currentTemperature)")
+                self.currentTemperature = currentTemperature
             case "10110003-5354-4f52-5a26-4249434b454c": // Set temperature
                 let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                let setTemperature = intValue / 10
-                self.selectedTemperature = Int(setTemperature)
+                let selectedTemperature = Int(intValue / 10)
+                log.info("Received selected temperature: \(selectedTemperature)")
+                self.selectedTemperature = selectedTemperature
             case "1010000c-5354-4f52-5a26-4249434b454c": // stat1
                 let heaterValue = Int(value[0])
                 let heaterStatus = (heaterValue & 0x0020) != 0
                 self.heatStatue = heaterStatus
+                log.info("Received heater status: \(heaterStatus)")
                 
                 let airValue = Int(value[1])
                 let airPumpStatus = (airValue & 0x0030) != 0
                 self.airStatue = airPumpStatus
+                log.info("Received air pump status: \(heaterStatus)")
             default:
                 break
             }
         }
+    }
+    
+    func toggleAirPump() {
+        
     }
     
     // Implement other delegate methods as needed

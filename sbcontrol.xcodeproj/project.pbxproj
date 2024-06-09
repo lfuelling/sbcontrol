@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CA2F1C412C14E24F00BD2BC9 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */; };
 		CA2F1C432C14E26800BD2BC9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C422C14E26800BD2BC9 /* ContentView.swift */; };
+		CA2F1C462C15B02700BD2BC9 /* ObjcExceptionBridging in Frameworks */ = {isa = PBXBuildFile; productRef = CA2F1C452C15B02700BD2BC9 /* ObjcExceptionBridging */; };
+		CA2F1C482C15B02700BD2BC9 /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = CA2F1C472C15B02700BD2BC9 /* XCGLogger */; };
+		CA2F1C4C2C15B26500BD2BC9 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C4B2C15B26500BD2BC9 /* log.swift */; };
 		CA94E8712C147E75009D33E0 /* sbcontrolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */; };
 		CA94E8752C147E76009D33E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA94E8742C147E76009D33E0 /* Assets.xcassets */; };
 		CA94E8792C147E76009D33E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA94E8782C147E76009D33E0 /* Preview Assets.xcassets */; };
@@ -37,6 +40,7 @@
 /* Begin PBXFileReference section */
 		CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		CA2F1C422C14E26800BD2BC9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CA2F1C4B2C15B26500BD2BC9 /* log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
 		CA94E86D2C147E75009D33E0 /* sbcontrol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sbcontrol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sbcontrolApp.swift; sourceTree = "<group>"; };
 		CA94E8742C147E76009D33E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2F1C462C15B02700BD2BC9 /* ObjcExceptionBridging in Frameworks */,
+				CA2F1C482C15B02700BD2BC9 /* XCGLogger in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +109,7 @@
 				CA94E8742C147E76009D33E0 /* Assets.xcassets */,
 				CA94E8762C147E76009D33E0 /* sbcontrol.entitlements */,
 				CA94E8772C147E76009D33E0 /* Preview Content */,
+				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
 			);
 			path = sbcontrol;
 			sourceTree = "<group>";
@@ -148,6 +155,10 @@
 			dependencies = (
 			);
 			name = sbcontrol;
+			packageProductDependencies = (
+				CA2F1C452C15B02700BD2BC9 /* ObjcExceptionBridging */,
+				CA2F1C472C15B02700BD2BC9 /* XCGLogger */,
+			);
 			productName = sbcontrol;
 			productReference = CA94E86D2C147E75009D33E0 /* sbcontrol.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +231,9 @@
 				Base,
 			);
 			mainGroup = CA94E8642C147E75009D33E0;
+			packageReferences = (
+				CA2F1C442C15B02700BD2BC9 /* XCRemoteSwiftPackageReference "XCGLogger" */,
+			);
 			productRefGroup = CA94E86E2C147E75009D33E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,6 +278,7 @@
 			files = (
 				CA94E8712C147E75009D33E0 /* sbcontrolApp.swift in Sources */,
 				CA2F1C412C14E24F00BD2BC9 /* BLEManager.swift in Sources */,
+				CA2F1C4C2C15B26500BD2BC9 /* log.swift in Sources */,
 				CA2F1C432C14E26800BD2BC9 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,6 +640,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA2F1C442C15B02700BD2BC9 /* XCRemoteSwiftPackageReference "XCGLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DaveWoodCom/XCGLogger";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA2F1C452C15B02700BD2BC9 /* ObjcExceptionBridging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA2F1C442C15B02700BD2BC9 /* XCRemoteSwiftPackageReference "XCGLogger" */;
+			productName = ObjcExceptionBridging;
+		};
+		CA2F1C472C15B02700BD2BC9 /* XCGLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA2F1C442C15B02700BD2BC9 /* XCRemoteSwiftPackageReference "XCGLogger" */;
+			productName = XCGLogger;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA94E8652C147E75009D33E0 /* Project object */;
 }

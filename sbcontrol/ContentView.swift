@@ -9,7 +9,7 @@ import SwiftUI
 import CoreBluetooth
 
 struct ContentView: View {
-    @ObservedObject var bleManager = BLEManager()
+    @StateObject var bleManager = BLEManager()
     
     var body: some View {
         if bleManager.peripheral == nil {
@@ -46,6 +46,9 @@ struct ContentView: View {
                     Image(systemName: bleManager.airStatue ? "humidifier.and.droplets.fill" : "humidifier.and.droplets")
                         .resizable()
                         .frame(width: 32, height: 32)
+                        .onTapGesture {
+                            bleManager.toggleAirPump()
+                        }
                     Spacer()
                 }
                 Spacer()
