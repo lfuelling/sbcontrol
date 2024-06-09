@@ -79,20 +79,17 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                 let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
                 let currentTemperature = intValue / 10
                 self.currentTemperature = Int(currentTemperature)
-                print("Current temperature: \(currentTemperature)")
             case "10110003-5354-4f52-5a26-4249434b454c": // Set temperature
                 let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
                 let setTemperature = intValue / 10
                 self.selectedTemperature = Int(setTemperature)
-                print("Set temperature: \(setTemperature)")
             case "1010000c-5354-4f52-5a26-4249434b454c": // stat1
-                let intValue = Int(value[0])
-                let heaterStatus = (intValue & 0x0020) != 0
-                print("Heater status: \(heaterStatus ? "ON" : "OFF")")
+                let heaterValue = Int(value[0])
+                let heaterStatus = (heaterValue & 0x0020) != 0
                 self.heatStatue = heaterStatus
                 
-                let airPumpStatus = (intValue & 0x2000) != 0
-                print("Air pump status: \(airPumpStatus ? "ON" : "OFF")")
+                let airValue = Int(value[1])
+                let airPumpStatus = (airValue & 0x0030) != 0
                 self.airStatue = airPumpStatus
             default:
                 break
