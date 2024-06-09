@@ -14,6 +14,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     @Published var peripherals: [CBPeripheral] = []
     
+    @Published var connected = false
     @Published var selectedTemperature = -1
     @Published var currentTemperature = -1
     @Published var airStatue = false
@@ -35,28 +36,49 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if !self.peripherals.contains(peripheral) && peripheral.name != nil {
-            log.info("Found device \"\(peripheral.name ?? "Unnamed")\"…")
-            self.peripherals.append(peripheral)
+        if let idx = self.peripherals.firstIndex(of: peripheral) {
+            withAnimation {
+                self.peripherals[idx] = peripheral
+            }
+        } else if peripheral.name != nil && Int(truncating: RSSI) > -80 {
+            log.info("Found device \"\(peripheral.name ?? "Unnamed")\", with \(RSSI)…")
+            withAnimation {
+                self.peripherals.append(peripheral)
+            }
         }
     }
     
     func connectDevice(peripheral: CBPeripheral) {
-        log.info("Stopping scan…")
-        self.centralManager.stopScan()
-        self.peripheral = peripheral
-        self.peripheral.delegate = self
-        log.info("Connecting to \"\(peripheral.name ?? "Unnamed")\"…")
-        self.centralManager.connect(self.peripheral, options: nil)
+        withAnimation {
+            self.peripheral = peripheral
+        }
+        Task {
+            log.info("Stopping scan…")
+            self.centralManager.stopScan()
+            self.peripheral.delegate = self
+            log.info("Connecting to \"\(peripheral.name ?? "Unnamed")\"…")
+            self.centralManager.connect(self.peripheral, options: nil)
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        self.connected = true
         self.peripheral.discoverServices(nil)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         for service in peripheral.services! {
+            self.peripheral.discoverIncludedServices(nil, for: service)
             self.peripheral.discoverCharacteristics(nil, for: service)
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverIncludedServicesFor parentService: CBService, error: Error?) {
+        if let includedServices = parentService.includedServices {
+            for service in includedServices {
+                self.peripheral.discoverIncludedServices(nil, for: service)
+                self.peripheral.discoverCharacteristics(nil, for: service)
+            }
         }
     }
     

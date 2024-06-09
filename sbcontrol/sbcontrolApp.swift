@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct sbcontrolApp: App {
+    @StateObject var bleManager = BLEManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(bleManager)
         }
     }
 }
