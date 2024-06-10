@@ -30,17 +30,25 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     private var heaterStatusGraphSeries: [GraphView.Datapoint] = []
     var graphSeries: [GraphView.DataSeries] {
         let currentTemperatureSeries = GraphView.DataSeries(label: "Current Temperature (°C)",
-                                                            data: self.currentTemperatureGraphSeries)
+                                                            data: self.currentTemperatureGraphSeries,
+                                                            booleanValue: false,
+                                                            color: Color.red,
+                                                            symbol: .circle)
         let selectedTemperatureSeries = GraphView.DataSeries(label: "Selected Temperature (°C)",
-                                                             data: self.selectedTemperatureGraphSeries)
+                                                             data: self.selectedTemperatureGraphSeries,
+                                                             booleanValue: false,
+                                                             color: Color.green,
+                                                             symbol: .diamond)
         let airStatusSeries = GraphView.DataSeries(label: "Air Pump",
                                                    data: self.airStatusGraphSeries,
                                                    booleanValue: true,
-                                                   color: .blue)
+                                                   color: .blue,
+                                                   symbol: .triangle)
         let heaterStatusSeries = GraphView.DataSeries(label: "Heater",
                                                       data: self.heaterStatusGraphSeries,
                                                       booleanValue: true,
-                                                      color: .red)
+                                                      color: .red,
+                                                      symbol: .plus)
         return [currentTemperatureSeries, selectedTemperatureSeries, airStatusSeries, heaterStatusSeries]
     }
     

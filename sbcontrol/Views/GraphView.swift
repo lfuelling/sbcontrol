@@ -23,6 +23,7 @@ struct GraphView: View {
         var label: String
         var data: [Datapoint]
         var color: Color
+        var symbol: BasicChartSymbolShape
         
         let booleanValue: Bool
         
@@ -34,14 +35,16 @@ struct GraphView: View {
             self.init(label: label,
                       data: data,
                       booleanValue: false,
-                      color: Color.accentColor)
+                      color: Color.accentColor,
+                      symbol: .asterisk)
         }
         
-        init(label: String, data: [Datapoint], booleanValue: Bool, color: Color) {
+        init(label: String, data: [Datapoint], booleanValue: Bool, color: Color, symbol: BasicChartSymbolShape) {
             self.label = label
             self.data = data
             self.booleanValue = booleanValue
             self.color = color
+            self.symbol = symbol
         }
     }
     
@@ -81,8 +84,8 @@ struct GraphView: View {
                         LineMark(x: .value(xLabel, Date(timeIntervalSince1970: data.time)),
                                  y: .value(yLabel, data.value))
                     }
-                    .foregroundStyle(by: .value(label, dataSeries.label))
-                    //.symbol(by: .value(label, dataSeries.label))
+                    .foregroundStyle(by: .value(label, dataSeries.label)) // TODO: use color from series
+                    .symbol(by: .value(label, dataSeries.label)) // TODO: use symbol from series
                 }
             }
             .chartYScale(domain: minValue...maxValue)
