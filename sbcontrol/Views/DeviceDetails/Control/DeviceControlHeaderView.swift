@@ -1,5 +1,5 @@
 //
-//  DeviceDetailsHeaderView.swift
+//  DeviceControlHeaderView.swift
 //  sbcontrol
 //
 //  Created by Lukas Fülling on 6/10/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DeviceDetailsHeaderView: View {
+struct DeviceControlHeaderView: View {
     @EnvironmentObject private var bleManager: BLEManager
     
     var body: some View {
@@ -28,7 +28,7 @@ struct DeviceDetailsHeaderView: View {
             }
             Spacer()
             VStack {
-                Text(bleManager.peripheral.name ??  "Unnamed")
+                Text(bleManager.peripheral?.name ??  "Unnamed")
                     .font(.largeTitle)
                     .padding()
                 HStack {
@@ -71,5 +71,5 @@ struct DeviceDetailsHeaderView: View {
 }
 
 #Preview {
-    DeviceDetailsHeaderView()
+    DeviceControlHeaderView()
 }

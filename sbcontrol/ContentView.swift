@@ -14,8 +14,15 @@ struct ContentView: View {
     var body: some View {
         if bleManager.peripheral == nil {
             DeviceSelectionView()
-        } else {
+        } else if bleManager.connected {
             DeviceDetailsView()
+        } else {
+            VStack {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(.circular)
+                Spacer()
+            }
         }
     }
 }

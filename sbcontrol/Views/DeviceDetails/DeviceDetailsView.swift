@@ -9,18 +9,51 @@ import SwiftUI
 
 struct DeviceDetailsView: View {
     @EnvironmentObject private var bleManager: BLEManager
-
+    
+    enum MenuItem: Hashable {
+        case control, settings
+    }
+    
+    @State private var selectedItem: MenuItem = .control
+    
     var body: some View {
-        VStack {
-            if(bleManager.connected) {
-                DeviceDetailsHeaderView()
-                Divider()
-                DeviceDetailsChartView()
-                Spacer()
-            } else {
-                ProgressView().progressViewStyle(.circular)
+        NavigationView {
+            // sidebar
+            List(selection: $selectedItem) {
+                Label {
+                    Text("Device Control")
+                } icon: {
+                    Image(systemName: "slider.horizontal.3")
+                }.tag(MenuItem.control)
+                Label {
+                    Text("Device Settings")
+                } icon: {
+                    Image(systemName: "gearshape.2")
+                }.tag(MenuItem.settings)
+            }.listStyle(.sidebar)
+            
+            // main content
+            VStack {
+                switch(selectedItem) {
+                case .control:
+                    DeviceControlView()
+                case .settings:
+                    DeviceSettingsView()
+                }
+            }.toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        bleManager.disconnect()
+                    } label: {
+                        Label {
+                            Text("Disconnect")
+                        } icon: {
+                            Image(systemName: "antenna.radiowaves.left.and.right.slash")
+                        }
+                    }
+                }
             }
-        }.navigationTitle("Device Control")
+        }
     }
 }
 

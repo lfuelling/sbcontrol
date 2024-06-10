@@ -47,16 +47,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     override init() {
         log.debug("Initializing…")
         super.init()
-        self.graphTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            self.createGraphEntry()
-        }
-        log.info("Starting scan…")
         centralManager = CBCentralManager(delegate: self, queue: nil)
         centralManager.delegate = self
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
+            log.info("Starting scan…")
             centralManager.scanForPeripherals(withServices: nil, options: nil)
         } else {
             log.error("Bluetooth not available!")
@@ -90,8 +87,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        log.info("Connected to \"\(peripheral.name ?? "Unnamed")\"!")
         self.connected = true
         self.peripheral.discoverServices(nil)
+        self.graphTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.createGraphEntry()
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -137,7 +138,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     fileprivate func createGraphEntry() {
-        log.debug("Adding graph entry…")
         let entryDate = Date.now.timeIntervalSince1970
         self.currentTemperatureGraphSeries.append(GraphView.Datapoint(time: entryDate,
                                                                       value: Double(self.currentTemperature)))
@@ -220,6 +220,35 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             default:
                 break
             }
+        }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        if let error = error {
+            log.error("Failed to disconnect from peripheral: \(error)")
+        } else {
+            log.info("Disconnected from \"\(peripheral.name ?? "Unnamed")\"!")
+        }
+        log.debug("Cancelling timer…")
+        self.graphTimer?.invalidate()
+        self.graphTimer = nil
+        withAnimation {
+            self.connected = false
+            self.peripheral = nil
+        }
+        log.info("Starting scan…")
+        self.centralManager.scanForPeripherals(withServices: nil, options: nil)
+    }
+    
+    func disconnect() {
+        withAnimation {
+            self.connected = false
+        }
+        if let peripheral = self.peripheral {
+            log.info("Disconnecting from \"\(peripheral.name ?? "Unnamed")\"…")
+            self.centralManager.cancelPeripheralConnection(peripheral)
+        } else {
+            log.warning("Unable to cancel peripheral connection!")
         }
     }
     
