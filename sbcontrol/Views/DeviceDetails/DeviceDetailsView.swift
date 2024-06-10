@@ -48,7 +48,7 @@ struct DeviceDetailsView: View {
                         Label {
                             Text("Disconnect")
                         } icon: {
-                            Image(systemName: "antenna.radiowaves.left.and.right.slash")
+                            Image(systemName: "door.left.hand.open")
                         }
                     }
                 }
