@@ -61,11 +61,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if let idx = self.peripherals.firstIndex(of: peripheral) {
-            withAnimation {
-                self.peripherals[idx] = peripheral
-            }
-        } else if peripheral.name != nil && Int(truncating: RSSI) > -80 {
+        if !peripherals.contains(peripheral) && peripheral.name != nil && Int(truncating: RSSI) > -80 {
             log.info("Found device \"\(peripheral.name ?? "Unnamed")\", with \(RSSI)…")
             withAnimation {
                 self.peripherals.append(peripheral)

@@ -11,15 +11,15 @@ struct DeviceSelectionView: View {
     @EnvironmentObject private var bleManager: BLEManager
     
     @State private var selectedItemId: UUID?
-
+    
     var body: some View {
         NavigationView {
-            List(selection: Binding(get: {true}, set: {_ in})) {
+            List {
                 Label {
                     Text("Connect")
                 } icon: {
                     Image(systemName: "antenna.radiowaves.left.and.right")
-                }.tag(true)
+                }.foregroundColor(.secondary)
             }.listStyle(.sidebar)
             
             List(selection: $selectedItemId) {
@@ -31,7 +31,19 @@ struct DeviceSelectionView: View {
                 } header: {
                     Text("Found Devices")
                 }
-            }.navigationTitle("Device Selection")
+            }
+            .navigationTitle("Device Selection")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Label {
+                        Text("Scanning…")
+                    } icon: {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                            .scaleEffect(0.6)
+                    }
+                }
+            }
         }
     }
 }
