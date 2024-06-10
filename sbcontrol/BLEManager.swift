@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 import CoreBluetooth
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+    @AppStorage("graphMaxEntries") private var graphMaxEntries: Int = 300
+    
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
     
@@ -17,11 +20,36 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var connected = false
     @Published var selectedTemperature = -1
     @Published var currentTemperature = -1
-    @Published var airStatue = false
-    @Published var heatStatue = false
+    @Published var airStatus = false
+    @Published var heatStatus = false
+    
+    private var graphTimer: Timer?
+    private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []
+    private var selectedTemperatureGraphSeries: [GraphView.Datapoint] = []
+    private var airStatusGraphSeries: [GraphView.Datapoint] = []
+    private var heaterStatusGraphSeries: [GraphView.Datapoint] = []
+    var graphSeries: [GraphView.DataSeries] {
+        let currentTemperatureSeries = GraphView.DataSeries(label: "Current Temperature (°C)",
+                                                            data: self.currentTemperatureGraphSeries)
+        let selectedTemperatureSeries = GraphView.DataSeries(label: "Selected Temperature (°C)",
+                                                             data: self.selectedTemperatureGraphSeries)
+        let airStatusSeries = GraphView.DataSeries(label: "Air Pump",
+                                                   data: self.airStatusGraphSeries,
+                                                   booleanValue: true,
+                                                   color: .blue)
+        let heaterStatusSeries = GraphView.DataSeries(label: "Heater",
+                                                      data: self.heaterStatusGraphSeries,
+                                                      booleanValue: true,
+                                                      color: .red)
+        return [currentTemperatureSeries, selectedTemperatureSeries, airStatusSeries, heaterStatusSeries]
+    }
     
     override init() {
+        log.debug("Initializing…")
         super.init()
+        self.graphTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.createGraphEntry()
+        }
         log.info("Starting scan…")
         centralManager = CBCentralManager(delegate: self, queue: nil)
         centralManager.delegate = self
@@ -87,7 +115,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             for characteristic in characteristics {
                 switch characteristic.uuid.uuidString.lowercased() {
                 case "10110001-5354-4f52-5a26-4249434b454c", // Current temperature
-                     "10110003-5354-4f52-5a26-4249434b454c", // Set temperature
+                    "10110003-5354-4f52-5a26-4249434b454c", // Set temperature
                     "1010000c-5354-4f52-5a26-4249434b454c": // stat1
                     log.info("Activating notifications for \(characteristic.uuid.uuidString)…")
                     peripheral.setNotifyValue(true, for: characteristic)
@@ -98,7 +126,38 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
         }
     }
-
+    
+    fileprivate func createGraphEntry() {
+        log.debug("Adding graph entry…")
+        let entryDate = Date.now.timeIntervalSince1970
+        self.currentTemperatureGraphSeries.append(GraphView.Datapoint(time: entryDate,
+                                                                      value: Double(self.currentTemperature)))
+        self.selectedTemperatureGraphSeries.append(GraphView.Datapoint(time: entryDate,
+                                                                       value: Double(self.selectedTemperature)))
+        self.airStatusGraphSeries.append(GraphView.Datapoint(time: entryDate,
+                                                             value: self.airStatus ? 1 : 0))
+        self.heaterStatusGraphSeries.append(GraphView.Datapoint(time: entryDate,
+                                                                value: self.heatStatus ? 1 : 0))
+        
+        if(currentTemperatureGraphSeries.count > graphMaxEntries) {
+            currentTemperatureGraphSeries.remove(at: 0)
+        }
+        if(selectedTemperatureGraphSeries.count > graphMaxEntries) {
+            selectedTemperatureGraphSeries.remove(at: 0)
+        }
+        if(airStatusGraphSeries.count > graphMaxEntries) {
+            airStatusGraphSeries.remove(at: 0)
+        }
+        if(heaterStatusGraphSeries.count > graphMaxEntries) {
+            heaterStatusGraphSeries.remove(at: 0)
+        }
+        DispatchQueue.main.async {
+            withAnimation {
+                self.objectWillChange.send()
+            }
+        }
+    }
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let value = characteristic.value {
             switch characteristic.uuid.uuidString.lowercased() {
@@ -115,12 +174,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             case "1010000c-5354-4f52-5a26-4249434b454c": // stat1
                 let heaterValue = Int(value[0])
                 let heaterStatus = (heaterValue & 0x0020) != 0
-                self.heatStatue = heaterStatus
+                self.heatStatus = heaterStatus
                 log.info("Received heater status: \(heaterStatus)")
                 
                 let airValue = Int(value[1])
                 let airPumpStatus = (airValue & 0x0030) != 0
-                self.airStatue = airPumpStatus
+                self.airStatus = airPumpStatus
                 log.info("Received air pump status: \(heaterStatus)")
             default:
                 break
