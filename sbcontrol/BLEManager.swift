@@ -188,8 +188,18 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func toggleAirPump() {
-        
+        log.error("TODO!")
     }
     
-    // Implement other delegate methods as needed
+    func toggleHeat() {
+        log.error("TODO!")
+    }
+    
+    func decreaseTemperature() {
+        log.error("TODO!")
+    }
+    
+    func increaseTemperature() {
+        log.error("TODO!")
+    }
 }
