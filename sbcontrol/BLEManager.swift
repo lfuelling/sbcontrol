@@ -74,7 +74,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         let name = peripheral.name ?? "Unnamed"
         
         if !peripherals.contains(peripheral) && (
-            Volcano.matchingName(name) // TODO: add more
+            Volcano.matchingName(name) ||
+            Crafty.matchingName(name)
         ) {
             log.info("Found device \"\(name)\", with \(RSSI)…")
             withAnimation {
@@ -125,7 +126,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
                 let characteristicId = characteristic.uuid.uuidString.lowercased()
-                if (Volcano.compatibleIds.contains(characteristicId)) {
+                if (Volcano.compatibleIds.contains(characteristicId) ||
+                    Crafty.compatibleIds.contains(characteristicId)) {
                     log.info("Activating notifications for \(characteristicId)…")
                     peripheral.setNotifyValue(true, for: characteristic)
                     peripheral.readValue(for: characteristic)
@@ -170,6 +172,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if let value = characteristic.value {
             let characteristicUUID = characteristic.uuid.uuidString.lowercased()
             if let handle = Volcano.valueHandlers[characteristicUUID] {
+                handle(value, self)
+            } else if let handle = Crafty.valueHandlers[characteristicUUID] {
                 handle(value, self)
             }
         }
