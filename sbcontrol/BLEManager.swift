@@ -267,14 +267,43 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
     
-    func toggleAirPump() {
-        log.error("TODO!")
+    func toggleAirPump() -> Bool {
+        if airStatus {
+            return writeSingleValue(uuidString: "10110014-5354-4f52-5a26-4249434b454c",
+                                    logMessage: "Writing air OFF…",
+                                    errorMessage: "Unable to write air OFF!")
+        } else {
+            return writeSingleValue(uuidString: "10110013-5354-4f52-5a26-4249434b454c",
+                                    logMessage: "Writing air ON…",
+                                    errorMessage: "Unable to write air ON!")
+        }
     }
     
-    func toggleHeat() {
-        log.error("TODO!")
+    func toggleHeat() -> Bool {
+        if heatStatus {
+            return writeSingleValue(uuidString: "10110010-5354-4f52-5a26-4249434b454c",
+                                    logMessage: "Writing heat OFF…",
+                                    errorMessage: "Unable to write heat OFF!")
+        } else {
+            return writeSingleValue(uuidString: "1011000f-5354-4f52-5a26-4249434b454c",
+                                    logMessage: "Writing heat ON…",
+                                    errorMessage: "Unable to write heat ON!")
+        }
     }
-
+    
+    fileprivate func writeSingleValue(uuidString: String, logMessage: String, errorMessage: String) -> Bool {
+        let uuid = CBUUID(string: uuidString)
+        if let services = peripheral.services {
+            if let characteristic = services.flatMap({$0.characteristics ?? []}).first(where: {$0.uuid == uuid}) {
+                log.info(logMessage)
+                peripheral.writeValue(Data(repeating: 1, count: 1), for: characteristic, type: .withResponse)
+                return true
+            }
+        }
+        log.error(errorMessage)
+        return false
+    }
+    
     func decreaseTemperature() -> Bool {
         return writeTemperature(temperature: selectedTemperature - 1)
     }
