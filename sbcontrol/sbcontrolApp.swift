@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(macOS)
 @main
 struct sbcontrolApp: App {
     @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
@@ -25,3 +26,17 @@ struct sbcontrolApp: App {
         }
     }
 }
+#else
+@main
+struct sbcontrolApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var bleManager = BLEManager()
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(bleManager)
+        }
+    }
+}
+#endif
