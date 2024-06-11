@@ -179,12 +179,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             case "10110001-5354-4f52-5a26-4249434b454c": // Current temperature
                 let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
                 let currentTemperature = Int(intValue / 10)
-                log.info("Received current temperature: \(currentTemperature)")
+                log.info("Received current temperature: \(currentTemperature)°C")
                 self.currentTemperature = currentTemperature
             case "10110003-5354-4f52-5a26-4249434b454c": // Set temperature
                 let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
                 let selectedTemperature = Int(intValue / 10)
-                log.info("Received selected temperature: \(selectedTemperature)")
+                log.info("Received selected temperature: \(selectedTemperature)°C")
                 self.selectedTemperature = selectedTemperature
             case "1010000c-5354-4f52-5a26-4249434b454c": // stat1
                 let heaterValue = Int(value[0])
