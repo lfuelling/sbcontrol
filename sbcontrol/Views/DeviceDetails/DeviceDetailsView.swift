@@ -15,12 +15,18 @@ struct DeviceDetailsView: View {
     }
     
     @State private var selectedItem: MenuItem = .control
-
+    
     var body: some View {
         NavigationStack {
             if let peripheral = bleManager.peripheral, bleManager.connected {
                 TabView {
-                    DeviceControlView().tabItem {
+                    VStack {
+                        DeviceControlsView()
+                        Divider()
+                        DeviceControlChartView()
+                        Spacer()
+                    }
+                    .tabItem {
                         Label {
                             Text("Device Control")
                         } icon: {
@@ -38,6 +44,13 @@ struct DeviceDetailsView: View {
                 }
                 .navigationTitle(peripheral.name ?? "Unnamed")
                 .toolbar {
+#if os(macOS)
+                    //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS as well.
+                    ToolbarItem(placement: .navigation) {
+                        Text(peripheral.name ?? "Unnamed")
+                            .bold()
+                    }
+#endif
                     ToolbarItem(placement: .primaryAction) {
                         Button {
                             bleManager.disconnect()
