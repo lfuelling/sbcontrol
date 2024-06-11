@@ -32,12 +32,20 @@ struct DeviceSelectionView: View {
                     } icon: {
                         ProgressView()
                             .progressViewStyle(.circular)
-                        #if os(macOS)
+#if os(macOS)
                             .scaleEffect(0.6)
-                        #endif
+#endif
                     }
                 }
             }
+        }.alert("Error", isPresented: Binding(get: {bleManager.bluetoothNotAvailable}, set: {_ in})) {
+            Button {
+                exit(0)
+            } label: {
+                Text("Quit Application")
+            }
+        } message: {
+            Text("Bluetooth is not available, the application can't be used.")
         }
     }
 }

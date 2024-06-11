@@ -18,6 +18,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var peripherals: [CBPeripheral] = []
     
     @Published var connected = false
+    @Published var bluetoothNotAvailable = false
     @Published var selectedTemperature = -1
     @Published var currentTemperature = -1
     @Published var airStatus = false
@@ -65,6 +66,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             centralManager.scanForPeripherals(withServices: nil, options: nil)
         } else {
             log.error("Bluetooth not available!")
+            bluetoothNotAvailable = true
         }
     }
     
