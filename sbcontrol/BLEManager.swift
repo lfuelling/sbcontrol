@@ -120,24 +120,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
-                switch characteristic.uuid.uuidString.lowercased() {
-                case "10110001-5354-4f52-5a26-4249434b454c", // Current temperature
-                    "10110003-5354-4f52-5a26-4249434b454c", // Set temperature
-                    "1010000c-5354-4f52-5a26-4249434b454c", // stat1 (airpump/heater status)
-                    "1011000c-5354-4f52-5a26-4249434b454c", // auto shut off enabled
-                    "1011000d-5354-4f52-5a26-4249434b454c", // auto shut off time
-                    "10110015-5354-4f52-5a26-4249434b454c", // operation hours
-                    "10110005-5354-4f52-5a26-4249434b454c", // led brightness
-                    "10100008-5354-4f52-5a26-4249434b454c", // serial number
-                    "10100003-5354-4f52-5a26-4249434b454c", // firmware version
-                    "10100004-5354-4f52-5a26-4249434b454c", // ble firmware version
-                    "1010000d-5354-4f52-5a26-4249434b454c", // stat2 (fahrenheit enabled 0x200, display on cooling 0x1000)
-                    "1010000e-5354-4f52-5a26-4249434b454c": // stat3 (vibration enabled 0x400)
-                    log.info("Activating notifications for \(characteristic.uuid.uuidString)…")
+                let characteristicId = characteristic.uuid.uuidString.lowercased()
+                if (Volcano.compatibleIds.contains(characteristicId)) {
+                    log.info("Activating notifications for \(characteristicId)…")
                     peripheral.setNotifyValue(true, for: characteristic)
                     peripheral.readValue(for: characteristic)
-                default:
-                    break
+                } else {
+                    log.debug("Unknown characteristic: \(characteristicId)")
                 }
             }
         }
@@ -175,56 +164,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let value = characteristic.value {
-            switch characteristic.uuid.uuidString.lowercased() {
-            case "10110001-5354-4f52-5a26-4249434b454c": // Current temperature
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                let currentTemperature = Int(intValue / 10)
-                log.info("Received current temperature: \(currentTemperature)°C")
-                self.currentTemperature = currentTemperature
-            case "10110003-5354-4f52-5a26-4249434b454c": // Set temperature
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                let selectedTemperature = Int(intValue / 10)
-                log.info("Received selected temperature: \(selectedTemperature)°C")
-                self.selectedTemperature = selectedTemperature
-            case "1010000c-5354-4f52-5a26-4249434b454c": // stat1
-                let heaterValue = Int(value[0])
-                let heaterStatus = (heaterValue & 0x0020) != 0
-                self.heatStatus = heaterStatus
-                log.info("Received heater status: \(heaterStatus)")
-                
-                let airValue = Int(value[1])
-                let airPumpStatus = (airValue & 0x0030) != 0
-                self.airStatus = airPumpStatus
-                log.info("Received air pump status: \(heaterStatus)")
-            case "1011000c-5354-4f52-5a26-4249434b454c": // auto shut off enabled
-                let intValue = UInt8(littleEndian: value.withUnsafeBytes { $0.load(as: UInt8.self) })
-                log.info("Received auto shut off enabled: \(intValue)")
-            case "1011000d-5354-4f52-5a26-4249434b454c": // auto shut off time
-                let intValue = UInt16(littleEndian: value.withUnsafeBytes { $0.load(as: UInt16.self) })
-                log.info("Received auto shut off time: \(intValue)")
-            case "10110015-5354-4f52-5a26-4249434b454c": // operation hours
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                log.info("Received operation hours: \(intValue)")
-            case "10110005-5354-4f52-5a26-4249434b454c": // led brightness
-                let intValue = UInt16(littleEndian: value.withUnsafeBytes { $0.load(as: UInt16.self) })
-                log.info("Received led brightness: \(intValue)")
-            case "10100008-5354-4f52-5a26-4249434b454c": // serial number
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                log.info("Received serial number: \(intValue)")
-            case "10100003-5354-4f52-5a26-4249434b454c": // firmware version
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                log.info("Received firmware version: \(intValue)")
-            case "10100004-5354-4f52-5a26-4249434b454c": // ble firmware version
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                log.info("Received ble firmware version: \(intValue)")
-            case "1010000d-5354-4f52-5a26-4249434b454c": // stat2 (fahrenheit enabled 0x200, display on cooling 0x1000)
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                log.info("Received stat2 (fahrenheit enabled 0x200, display on cooling 0x1000): \(intValue)")
-            case "1010000e-5354-4f52-5a26-4249434b454c": // stat3 (vibration enabled 0x400)
-                let intValue = UInt32(littleEndian: value.withUnsafeBytes { $0.load(as: UInt32.self) })
-                log.info("Received stat3 (vibration enabled 0x400): \(intValue)")
-            default:
-                break
+            let characteristicUUID = characteristic.uuid.uuidString.lowercased()
+            if let handle = Volcano.valueHandlers[characteristicUUID] {
+                handle(value, self)
             }
         }
     }
@@ -269,11 +211,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func toggleAirPump() -> Bool {
         if airStatus {
-            return writeSingleValue(uuidString: "10110014-5354-4f52-5a26-4249434b454c",
+            return writeSingleValue(uuidString: Volcano.airOffId,
                                     logMessage: "Writing air OFF…",
                                     errorMessage: "Unable to write air OFF!")
         } else {
-            return writeSingleValue(uuidString: "10110013-5354-4f52-5a26-4249434b454c",
+            return writeSingleValue(uuidString: Volcano.airOnId,
                                     logMessage: "Writing air ON…",
                                     errorMessage: "Unable to write air ON!")
         }
@@ -281,11 +223,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func toggleHeat() -> Bool {
         if heatStatus {
-            return writeSingleValue(uuidString: "10110010-5354-4f52-5a26-4249434b454c",
+            return writeSingleValue(uuidString: Volcano.heatOffId,
                                     logMessage: "Writing heat OFF…",
                                     errorMessage: "Unable to write heat OFF!")
         } else {
-            return writeSingleValue(uuidString: "1011000f-5354-4f52-5a26-4249434b454c",
+            return writeSingleValue(uuidString: Volcano.heatOnId,
                                     logMessage: "Writing heat ON…",
                                     errorMessage: "Unable to write heat ON!")
         }
@@ -315,7 +257,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     fileprivate func writeTemperature(temperature: Int) -> Bool {
         let scaledIntTemp = Int32(temperature * 10)
         let data = withUnsafeBytes(of: scaledIntTemp.littleEndian) { Data($0) }
-        let setTempUUID = CBUUID(string: "10110003-5354-4f52-5a26-4249434b454c")
+        let setTempUUID = CBUUID(string: Volcano.selectedTempId)
         if let services = peripheral.services {
             if let characteristic = services.flatMap({$0.characteristics ?? []}).first(where: {$0.uuid == setTempUUID}) {
                 log.info("Writing temperature \(temperature)°C…")

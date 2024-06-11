@@ -30,6 +30,7 @@
 		CACA75942C18D171003A984C /* DeviceControlsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */; };
 		CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
 		CACA75982C18D2FD003A984C /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
+		CACA759B2C190317003A984C /* Volcano.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759A2C190314003A984C /* Volcano.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsTemperatureSection.swift; sourceTree = "<group>"; };
 		CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsHeatButton.swift; sourceTree = "<group>"; };
 		CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsAirButton.swift; sourceTree = "<group>"; };
+		CACA759A2C190314003A984C /* Volcano.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volcano.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 		CA94E86F2C147E75009D33E0 /* sbcontrol */ = {
 			isa = PBXGroup;
 			children = (
+				CACA75992C190302003A984C /* Devices */,
 				CA2F1C4D2C15C76C00BD2BC9 /* Views */,
 				CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */,
 				CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */,
@@ -221,6 +224,14 @@
 				CA94E88E2C147E77009D33E0 /* sbcontrolUITestsLaunchTests.swift */,
 			);
 			path = sbcontrolUITests;
+			sourceTree = "<group>";
+		};
+		CACA75992C190302003A984C /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				CACA759A2C190314003A984C /* Volcano.swift */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +380,7 @@
 				CA2F1C5B2C166AF900BD2BC9 /* DeviceDetailsChartView.swift in Sources */,
 				CA2F1C412C14E24F00BD2BC9 /* BLEManager.swift in Sources */,
 				CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */,
+				CACA759B2C190317003A984C /* Volcano.swift in Sources */,
 				CA2F1C652C1684E300BD2BC9 /* DeviceSettingsView.swift in Sources */,
 				CACA75942C18D171003A984C /* DeviceControlsTemperatureSection.swift in Sources */,
 				CA2F1C4C2C15B26500BD2BC9 /* log.swift in Sources */,
