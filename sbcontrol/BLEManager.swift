@@ -71,8 +71,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if !peripherals.contains(peripheral) && peripheral.name != nil && Int(truncating: RSSI) > -80 {
-            log.info("Found device \"\(peripheral.name ?? "Unnamed")\", with \(RSSI)…")
+        let name = peripheral.name ?? "Unnamed"
+        
+        if !peripherals.contains(peripheral) && (
+            Volcano.matchingName(name) // TODO: add more
+        ) {
+            log.info("Found device \"\(name)\", with \(RSSI)…")
             withAnimation {
                 self.peripherals.append(peripheral)
             }

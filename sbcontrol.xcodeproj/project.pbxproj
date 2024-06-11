@@ -31,6 +31,7 @@
 		CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
 		CACA75982C18D2FD003A984C /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
 		CACA759B2C190317003A984C /* Volcano.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759A2C190314003A984C /* Volcano.swift */; };
+		CACA759D2C190F21003A984C /* SBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759C2C190F19003A984C /* SBDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsHeatButton.swift; sourceTree = "<group>"; };
 		CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsAirButton.swift; sourceTree = "<group>"; };
 		CACA759A2C190314003A984C /* Volcano.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volcano.swift; sourceTree = "<group>"; };
+		CACA759C2C190F19003A984C /* SBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 		CACA75992C190302003A984C /* Devices */ = {
 			isa = PBXGroup;
 			children = (
+				CACA759C2C190F19003A984C /* SBDevice.swift */,
 				CACA759A2C190314003A984C /* Volcano.swift */,
 			);
 			path = Devices;
@@ -381,6 +384,7 @@
 				CA2F1C412C14E24F00BD2BC9 /* BLEManager.swift in Sources */,
 				CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */,
 				CACA759B2C190317003A984C /* Volcano.swift in Sources */,
+				CACA759D2C190F21003A984C /* SBDevice.swift in Sources */,
 				CA2F1C652C1684E300BD2BC9 /* DeviceSettingsView.swift in Sources */,
 				CACA75942C18D171003A984C /* DeviceControlsTemperatureSection.swift in Sources */,
 				CA2F1C4C2C15B26500BD2BC9 /* log.swift in Sources */,
