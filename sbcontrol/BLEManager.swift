@@ -229,6 +229,15 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        if let error = error {
+            log.error("Error writing characteristic value: \(error.localizedDescription)")
+        } else {
+            log.info("Successfully wrote value for characteristic \(characteristic.uuid)!")
+            peripheral.readValue(for: characteristic)
+        }
+    }
+    
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         if let error = error {
             log.error("Failed to disconnect from peripheral: \(error)")
@@ -265,12 +274,27 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func toggleHeat() {
         log.error("TODO!")
     }
-    
-    func decreaseTemperature() {
-        log.error("TODO!")
+
+    func decreaseTemperature() -> Bool {
+        return writeTemperature(temperature: selectedTemperature - 1)
     }
     
-    func increaseTemperature() {
-        log.error("TODO!")
+    func increaseTemperature() -> Bool {
+        return writeTemperature(temperature: selectedTemperature + 1)
+    }
+    
+    fileprivate func writeTemperature(temperature: Int) -> Bool {
+        let scaledIntTemp = Int32(temperature * 10)
+        let data = withUnsafeBytes(of: scaledIntTemp.littleEndian) { Data($0) }
+        let setTempUUID = CBUUID(string: "10110003-5354-4f52-5a26-4249434b454c")
+        if let services = peripheral.services {
+            if let characteristic = services.flatMap({$0.characteristics ?? []}).first(where: {$0.uuid == setTempUUID}) {
+                log.info("Writing temperature \(temperature)°C…")
+                peripheral.writeValue(data, for: characteristic, type: .withResponse)
+                return true
+            }
+        }
+        log.error("Unable to write temperature!")
+        return false
     }
 }
