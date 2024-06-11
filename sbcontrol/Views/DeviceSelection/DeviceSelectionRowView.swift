@@ -16,20 +16,31 @@ struct DeviceSelectionRowView: View {
     @State private var hovering = false
     
     var body: some View {
-        HStack {
-            Text(peripheral.name ?? "Unnamed")
-                .fontWeight(hovering ? .bold : .regular)
-            
-            Spacer()
-            Button {
-                self.bleManager.connectDevice(peripheral: peripheral)
-            } label: {
-                Text("Connect")
+        Button {
+            self.bleManager.connectDevice(peripheral: peripheral)
+        } label: {
+            HStack {
+                Text(peripheral.name ?? "Unnamed")
+                    .fontWeight(hovering ? .bold : .regular)
+                Spacer()
             }
-        }
-        .onHover(perform: {hovering in
+        }.onHover(perform: {hovering in
             self.hovering = hovering
         })
+#if os(macOS)
+        .onChange(of: hovering) {
+            DispatchQueue.main.async {
+                if(hovering) {
+                    NSCursor.pointingHand.push()
+                } else {
+                    NSCursor.pop()
+                }
+            }
+        }
+        .padding(4)
+        .buttonStyle(LinkButtonStyle())
+#else
+#endif
     }
 }
 

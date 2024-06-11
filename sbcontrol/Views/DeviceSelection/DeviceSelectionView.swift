@@ -32,7 +32,9 @@ struct DeviceSelectionView: View {
                     } icon: {
                         ProgressView()
                             .progressViewStyle(.circular)
+                        #if os(macOS)
                             .scaleEffect(0.6)
+                        #endif
                     }
                 }
             }
