@@ -19,6 +19,8 @@ struct DeviceDetailsView: View {
     var body: some View {
         NavigationStack {
             if let peripheral = bleManager.peripheral, bleManager.connected {
+                let titleString = "\(bleManager.deviceDetermination.value): \(peripheral.name ?? "Unnamed")"
+                
                 TabView {
                     VStack {
                         DeviceControlsView()
@@ -42,12 +44,12 @@ struct DeviceDetailsView: View {
                         }.tag(MenuItem.settings)
                     }
                 }
-                .navigationTitle(peripheral.name ?? "Unnamed")
+                .navigationTitle(titleString)
                 .toolbar {
 #if os(macOS)
                     //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS as well.
                     ToolbarItem(placement: .navigation) {
-                        Text(peripheral.name ?? "Unnamed")
+                        Text(titleString)
                             .bold()
                     }
 #endif

@@ -10,6 +10,21 @@ import Combine
 import CoreBluetooth
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+    enum DeviceDetermination: String {
+        case volcano, crafty, unknown
+        
+        var value: String {
+            switch self {
+            case .unknown:
+                NSLocalizedString("device_type.unknown", comment: "unknown device type")
+            case .crafty:
+                NSLocalizedString("device_type.crafty", comment: "crafty device type")
+            case .volcano:
+                NSLocalizedString("device_type.volcano", comment: "volcano device type")
+            }
+        }
+    }
+    
     @AppStorage("graphMaxEntries") private var graphMaxEntries: Int = 300
     
     var centralManager: CBCentralManager!
@@ -23,6 +38,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var currentTemperature = -1
     @Published var airStatus = false
     @Published var heatStatus = false
+    @Published var deviceDetermination: DeviceDetermination = .unknown
     
     private var graphTimer: Timer?
     private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []
@@ -100,6 +116,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         log.info("Connected to \"\(peripheral.name ?? "Unnamed")\"!")
         self.connected = true
+        self.deviceDetermination = .unknown
         self.peripheral.discoverServices(nil)
         self.graphTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.createGraphEntry()
@@ -122,18 +139,46 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
     
+    fileprivate func tryDeviceDetermination(for characteristic: CBCharacteristic) {
+        let characteristicId = characteristic.uuid.uuidString.lowercased()
+        if(deviceDetermination == .unknown) {
+            if (Volcano.compatibleIds.contains(characteristicId)) {
+                log.info("Device detected as Volcano!")
+                withAnimation {
+                    deviceDetermination = .volcano
+                }
+            } else if(Crafty.compatibleIds.contains(characteristicId)) {
+                log.info("Device detected as Crafty!")
+                withAnimation {
+                    deviceDetermination = .crafty
+                }
+            } else {
+                log.debug("Unable to determine device!")
+                withAnimation {
+                    deviceDetermination = .unknown
+                }
+            }
+        }
+    }
+    
+    fileprivate func notifyIfNeeded(about characteristic: CBCharacteristic) {
+        let characteristicId = characteristic.uuid.uuidString.lowercased()
+        if (Volcano.compatibleIds.contains(characteristicId) ||
+            Crafty.compatibleIds.contains(characteristicId)) {
+            log.info("Activating notifications for \(characteristicId)…")
+            peripheral.setNotifyValue(true, for: characteristic)
+            log.debug("Reading initial value of \(characteristic.uuid.uuidString.lowercased())…")
+            peripheral.readValue(for: characteristic)
+        } else {
+            log.debug("Unknown characteristic: \(characteristicId)")
+        }
+    }
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
-                let characteristicId = characteristic.uuid.uuidString.lowercased()
-                if (Volcano.compatibleIds.contains(characteristicId) ||
-                    Crafty.compatibleIds.contains(characteristicId)) {
-                    log.info("Activating notifications for \(characteristicId)…")
-                    peripheral.setNotifyValue(true, for: characteristic)
-                    peripheral.readValue(for: characteristic)
-                } else {
-                    log.debug("Unknown characteristic: \(characteristicId)")
-                }
+                tryDeviceDetermination(for: characteristic)
+                notifyIfNeeded(about: characteristic)
             }
         }
     }
@@ -198,6 +243,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         self.graphTimer?.invalidate()
         self.graphTimer = nil
         withAnimation {
+            self.deviceDetermination = .unknown
             self.connected = false
             self.peripheral = nil
         }
