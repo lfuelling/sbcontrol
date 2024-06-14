@@ -65,6 +65,26 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         centralManager.delegate = self
     }
     
+    fileprivate func resetState() {
+        log.info("Resetting State…")
+        withAnimation {
+            self.currentTemperatureGraphSeries = []
+            self.selectedTemperatureGraphSeries = []
+            self.airStatusGraphSeries = []
+            self.heaterStatusGraphSeries = []
+            self.powerState = false
+            self.batteryPercent = -1
+            self.currentTemperature = -1
+            self.selectedTemperature = -1
+            self.airStatus = false
+            self.heatStatus = false
+            self.writingValue = false
+            self.deviceDetermination = .unknown
+            self.connected = false
+            self.peripheral = nil
+        }
+    }
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             log.info("Starting scan…")
@@ -235,15 +255,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         log.debug("Cancelling timer…")
         self.graphTimer?.invalidate()
         self.graphTimer = nil
-        withAnimation {
-            self.currentTemperatureGraphSeries = []
-            self.selectedTemperatureGraphSeries = []
-            self.airStatusGraphSeries = []
-            self.heaterStatusGraphSeries = []
-            self.deviceDetermination = .unknown
-            self.connected = false
-            self.peripheral = nil
-        }
+        self.resetState()
         log.info("Starting scan…")
         self.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
