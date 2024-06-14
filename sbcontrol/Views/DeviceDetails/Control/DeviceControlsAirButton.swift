@@ -28,7 +28,7 @@ struct DeviceControlsAirButton: View {
     
     var body: some View {
         Button {
-            bleManager.toggleAirPump()
+            let result = bleManager.toggleAirPump()
         } label: {
 #if os(iOS)
             HStack {
@@ -39,7 +39,7 @@ struct DeviceControlsAirButton: View {
 #else
             Content().padding()
 #endif
-        }
+        }.disabled(!bleManager.deviceDetermination.hasAir)
     }
 }
 

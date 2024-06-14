@@ -10,21 +10,6 @@ import Combine
 import CoreBluetooth
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    enum DeviceDetermination: String {
-        case volcano, crafty, unknown
-        
-        var value: String {
-            switch self {
-            case .unknown:
-                NSLocalizedString("device_type.unknown", comment: "unknown device type")
-            case .crafty:
-                NSLocalizedString("device_type.crafty", comment: "crafty device type")
-            case .volcano:
-                NSLocalizedString("device_type.volcano", comment: "volcano device type")
-            }
-        }
-    }
-    
     @AppStorage("graphMaxEntries") private var graphMaxEntries: Int = 300
     
     var centralManager: CBCentralManager!
@@ -264,27 +249,43 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func toggleAirPump() -> Bool {
-        if airStatus {
-            return writeSingleValue(uuidString: Volcano.airOffId,
-                                    logMessage: "Writing air OFF…",
-                                    errorMessage: "Unable to write air OFF!")
-        } else {
-            return writeSingleValue(uuidString: Volcano.airOnId,
-                                    logMessage: "Writing air ON…",
-                                    errorMessage: "Unable to write air ON!")
+        switch(deviceDetermination) {
+        case .volcano:
+            if airStatus {
+                return writeSingleValue(uuidString: Volcano.airOffId,
+                                        logMessage: "Writing air OFF…",
+                                        errorMessage: "Unable to write air OFF!")
+            } else {
+                return writeSingleValue(uuidString: Volcano.airOnId,
+                                        logMessage: "Writing air ON…",
+                                        errorMessage: "Unable to write air ON!")
+            }
+        case .crafty:
+            log.warning("TODO!")
+        default:
+            log.debug("Unknown device!")
         }
+        return false
     }
     
     func toggleHeat() -> Bool {
-        if heatStatus {
-            return writeSingleValue(uuidString: Volcano.heatOffId,
-                                    logMessage: "Writing heat OFF…",
-                                    errorMessage: "Unable to write heat OFF!")
-        } else {
-            return writeSingleValue(uuidString: Volcano.heatOnId,
-                                    logMessage: "Writing heat ON…",
-                                    errorMessage: "Unable to write heat ON!")
+        switch(deviceDetermination) {
+        case .volcano:
+            if heatStatus {
+                return writeSingleValue(uuidString: Volcano.heatOffId,
+                                        logMessage: "Writing heat OFF…",
+                                        errorMessage: "Unable to write heat OFF!")
+            } else {
+                return writeSingleValue(uuidString: Volcano.heatOnId,
+                                        logMessage: "Writing heat ON…",
+                                        errorMessage: "Unable to write heat ON!")
+            }
+        case .crafty:
+            log.warning("TODO!")
+        default:
+            log.debug("Unknown device!")
         }
+        return false
     }
     
     fileprivate func writeSingleValue(uuidString: String, logMessage: String, errorMessage: String) -> Bool {
@@ -309,16 +310,29 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     fileprivate func writeTemperature(temperature: Int) -> Bool {
-        let scaledIntTemp = Int32(temperature * 10)
-        let data = withUnsafeBytes(of: scaledIntTemp.littleEndian) { Data($0) }
-        let setTempUUID = CBUUID(string: Volcano.selectedTempId)
         if let services = peripheral.services {
-            if let characteristic = services.flatMap({$0.characteristics ?? []}).first(where: {$0.uuid == setTempUUID}) {
-                log.info("Writing temperature \(temperature)°C…")
-                peripheral.writeValue(data, for: characteristic, type: .withResponse)
-                return true
+            let characteristics = services.flatMap({$0.characteristics ?? []})
+            log.info("Writing temperature \(temperature)°C…")
+            switch(deviceDetermination) {
+            case .volcano: 
+                if let characteristic = characteristics.first(where: {$0.uuid == CBUUID(string: Volcano.selectedTempId)}) {
+                    let scaledIntTemp = Int32(temperature * 10)
+                    let data = withUnsafeBytes(of: scaledIntTemp.littleEndian) { Data($0) }
+                    peripheral.writeValue(data, for: characteristic, type: .withResponse)
+                    return true
+                }
+            case .crafty:
+                if let characteristic = characteristics.first(where: {$0.uuid == CBUUID(string: Crafty.selectedTempId)}) {
+                    let scaledIntTemp = Int16(temperature * 10)
+                    let data = withUnsafeBytes(of: scaledIntTemp.littleEndian) { Data($0) }
+                    peripheral.writeValue(data, for: characteristic, type: .withResponse)
+                    return true
+                }
+            default:
+                log.debug("Unknown device!")
             }
         }
+        
         log.error("Unable to write temperature!")
         return false
     }
