@@ -42,4 +42,15 @@ enum DeviceDetermination: String {
             Volcano.hasAir
         }
     }
+    
+    var hasBattery: Bool {
+        switch self {
+        case .unknown:
+            false
+        case .crafty:
+            Crafty.hasBattery
+        case .volcano:
+            Volcano.hasBattery
+        }
+    }
 }

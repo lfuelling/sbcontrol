@@ -10,6 +10,7 @@ import Foundation
 class Crafty: SBDevice {
     static let hasHeat: Bool = true
     static let hasAir: Bool = false
+    static let hasBattery: Bool = true
 
     static let currentTempId = "00000011-4c45-4b43-4942-265a524f5453"
     static let selectedTempId = "00000021-4c45-4b43-4942-265a524f5453"
@@ -82,6 +83,7 @@ class Crafty: SBDevice {
         batteryId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batteryId: \(intValue)")
+            bleManager.batteryPercent = Int(intValue)
         },
         ledId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
@@ -119,10 +121,16 @@ class Crafty: SBDevice {
         powerId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received powerId: \(intValue)")
+            if(intValue == 32916) {
+                bleManager.powerState = true
+            } else if(intValue == 16) {
+                bleManager.powerState = false
+            }
         },
         chargingId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received chargingId: \(intValue)")
+            bleManager.powerState = intValue == 2
         },
         powerBoostHeatStateId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })

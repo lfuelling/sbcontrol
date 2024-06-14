@@ -26,6 +26,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var heatStatus = false
     @Published var deviceDetermination: DeviceDetermination = .unknown
     @Published var hoursOfOperation = -1
+    @Published var batteryPercent = -1
+    @Published var powerState = false
     
     private var graphTimer: Timer?
     private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []

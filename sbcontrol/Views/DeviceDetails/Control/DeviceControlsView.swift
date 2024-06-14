@@ -15,12 +15,16 @@ struct DeviceControlsView: View {
         HStack {
             DeviceControlsHeatButton()
             Spacer()
-            DeviceControlsTemperatureSection()
+            VStack(spacing: 2) {
+                DeviceControlsBatterySection()
+                DeviceControlsTemperatureSection()
+            }
             Spacer()
             DeviceControlsAirButton()
         }.padding()
 #else
         VStack {
+            DeviceControlsBatterySection()
             DeviceControlsTemperatureSection()
             DeviceControlsHeatButton()
             DeviceControlsAirButton()

@@ -10,6 +10,7 @@ import Foundation
 class Volcano: SBDevice {
     static let hasHeat: Bool = true
     static let hasAir: Bool = true
+    static let hasBattery: Bool = false
     
     static let currentTempId = "10110001-5354-4f52-5a26-4249434b454c" // Current temperature
     static let selectedTempId = "10110003-5354-4f52-5a26-4249434b454c" // Set temperature

@@ -17,4 +17,6 @@ protocol SBDevice {
     static var hasHeat: Bool { get }
     
     static var hasAir: Bool { get }
+    
+    static var hasBattery: Bool { get }
 }
