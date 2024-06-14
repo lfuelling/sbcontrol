@@ -94,6 +94,7 @@ class Volcano: SBDevice {
         serialNumberId: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received serialNumber: \(intValue)")
+            bleManager.serialNumber = "\(intValue)"
         },
         firmwareVersionId: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })

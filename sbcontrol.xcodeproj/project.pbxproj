@@ -24,6 +24,8 @@
 		CA5B8D0B2C1CABD3003ADBBB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */; };
 		CA5B8D0D2C1CAD19003ADBBB /* DeviceDetermination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */; };
 		CA5B8D0F2C1CC49B003ADBBB /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
+		CA5B8D112C1CCCE0003ADBBB /* DeviceInformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D102C1CCCE0003ADBBB /* DeviceInformationSection.swift */; };
+		CA5B8D132C1CCD05003ADBBB /* DeviceSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D122C1CCD05003ADBBB /* DeviceSettingsSection.swift */; };
 		CA94E8712C147E75009D33E0 /* sbcontrolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */; };
 		CA94E8752C147E76009D33E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA94E8742C147E76009D33E0 /* Assets.xcassets */; };
 		CA94E8792C147E76009D33E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA94E8782C147E76009D33E0 /* Preview Assets.xcassets */; };
@@ -71,6 +73,8 @@
 		CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetermination.swift; sourceTree = "<group>"; };
 		CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsBatterySection.swift; sourceTree = "<group>"; };
+		CA5B8D102C1CCCE0003ADBBB /* DeviceInformationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationSection.swift; sourceTree = "<group>"; };
+		CA5B8D122C1CCD05003ADBBB /* DeviceSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingsSection.swift; sourceTree = "<group>"; };
 		CA94E86D2C147E75009D33E0 /* sbcontrol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sbcontrol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sbcontrolApp.swift; sourceTree = "<group>"; };
 		CA94E8742C147E76009D33E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				CA2F1C642C1684E300BD2BC9 /* DeviceSettingsView.swift */,
+				CA5B8D102C1CCCE0003ADBBB /* DeviceInformationSection.swift */,
+				CA5B8D122C1CCD05003ADBBB /* DeviceSettingsSection.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -393,10 +399,12 @@
 				CA5B8D0D2C1CAD19003ADBBB /* DeviceDetermination.swift in Sources */,
 				CA5B8D0F2C1CC49B003ADBBB /* DeviceControlsBatterySection.swift in Sources */,
 				CACA759F2C1910BC003A984C /* Crafty.swift in Sources */,
+				CA5B8D132C1CCD05003ADBBB /* DeviceSettingsSection.swift in Sources */,
 				CA2F1C6A2C16858C00BD2BC9 /* AppDelegate.swift in Sources */,
 				CACA75982C18D2FD003A984C /* DeviceControlsAirButton.swift in Sources */,
 				CA2F1C5F2C166CAF00BD2BC9 /* GraphView.swift in Sources */,
 				CA2F1C5B2C166AF900BD2BC9 /* DeviceDetailsChartView.swift in Sources */,
+				CA5B8D112C1CCCE0003ADBBB /* DeviceInformationSection.swift in Sources */,
 				CA2F1C412C14E24F00BD2BC9 /* BLEManager.swift in Sources */,
 				CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */,
 				CACA759B2C190317003A984C /* Volcano.swift in Sources */,

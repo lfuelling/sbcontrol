@@ -28,6 +28,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var hoursOfOperation = -1
     @Published var batteryPercent = -1
     @Published var powerState = false
+    @Published var serialNumber = ""
     
     private var graphTimer: Timer?
     private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []
@@ -68,6 +69,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     fileprivate func resetState() {
         log.info("Resetting State…")
         withAnimation {
+            self.deviceDetermination = .unknown
+            self.connected = false
+            self.peripheral = nil
             self.currentTemperatureGraphSeries = []
             self.selectedTemperatureGraphSeries = []
             self.airStatusGraphSeries = []
@@ -79,9 +83,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             self.airStatus = false
             self.heatStatus = false
             self.writingValue = false
-            self.deviceDetermination = .unknown
-            self.connected = false
-            self.peripheral = nil
+            self.serialNumber = ""
         }
     }
     

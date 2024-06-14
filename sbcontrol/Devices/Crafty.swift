@@ -104,6 +104,7 @@ class Crafty: SBDevice {
         serialId: { data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received serialId: \(intValue)")
+            bleManager.serialNumber = "\(intValue)"
         },
         miscDataId: { data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })

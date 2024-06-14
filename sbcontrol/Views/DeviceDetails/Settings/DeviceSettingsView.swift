@@ -12,22 +12,8 @@ struct DeviceSettingsView: View {
     
     var body: some View {
         List {
-            Section {
-                Text("TODO!")
-            } header: {
-                Text("Device Settings")
-            }
-            
-            Section {
-                HStack {
-                    Text("Operation Time")
-                        .bold()
-                    Spacer()
-                    Text("\(bleManager.hoursOfOperation) hours")
-                }
-            } header: {
-                Text("Device Information")
-            }
+            DeviceSettingsSection()
+            DeviceInformationSection()
         }.navigationTitle("Settings")
     }
 }

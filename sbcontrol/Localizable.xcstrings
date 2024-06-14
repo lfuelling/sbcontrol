@@ -26,7 +26,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld%"
+            "value" : "%lld%%"
           }
         }
       }
@@ -262,6 +262,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selected %lld°C"
+          }
+        }
+      }
+    },
+    "Serial Number" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serial Number"
           }
         }
       }
