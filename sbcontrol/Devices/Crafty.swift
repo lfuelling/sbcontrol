@@ -32,6 +32,9 @@ class Crafty: SBDevice {
     static let batDischargeCyclesId = "00000163-4c45-4b43-4942-265a524f5453"
     static let batChargeCyclesId = "00000173-4c45-4b43-4942-265a524f5453"
     
+    static let heaterOnId = "00000081-4c45-4b43-4942-265a524f5453"
+    static let heaterOffId = "00000091-4c45-4b43-4942-265a524f5453"
+    
     static var compatibleIds: [String] = [
         currentTempId,
         selectedTempId,
@@ -123,6 +126,14 @@ class Crafty: SBDevice {
         powerBoostHeatStateId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received powerBoostHeatStateId: \(intValue)")
+            let powerState = (Int(data[0]) & 0x10) == 0x10
+            let heatingState = (Int(data[0]) & 0x5) == 0x5
+            let boostState = (Int(data[0]) & 0x20) == 0x20
+            
+            bleManager.heatStatus = heatingState
+            log.debug("Decoded heater status: \(heatingState)")
+            log.debug("Decoded power status: \(powerState)")
+            log.debug("Decoded boost status: \(boostState)")
         },
         batRemainingId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })

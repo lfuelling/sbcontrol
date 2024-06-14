@@ -286,7 +286,15 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                                         errorMessage: "Unable to write heat ON!")
             }
         case .crafty:
-            log.warning("TODO!")
+            if heatStatus {
+                return writeSingleValue(uuidString: Crafty.heaterOffId,
+                                        logMessage: "Writing heat OFF…",
+                                        errorMessage: "Unable to write heat OFF!")
+            } else {
+                return writeSingleValue(uuidString: Crafty.heaterOnId,
+                                        logMessage: "Writing heat ON…",
+                                        errorMessage: "Unable to write heat ON!")
+            }
         default:
             log.debug("Unknown device!")
         }
@@ -298,8 +306,18 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if let services = peripheral.services {
             if let characteristic = services.flatMap({$0.characteristics ?? []}).first(where: {$0.uuid == uuid}) {
                 log.info(logMessage)
-                peripheral.writeValue(Data(repeating: 1, count: 1), for: characteristic, type: .withResponse)
-                return true
+                switch(deviceDetermination) {
+                case .volcano:
+                    peripheral.writeValue(Data(repeating: 1, count: 1), for: characteristic, type: .withResponse)
+                    return true
+                case .crafty:
+                    var value: Int16 = Int16(1)
+                    let data = Data(bytes: &value, count: MemoryLayout.size(ofValue: value))
+                    peripheral.writeValue(data, for: characteristic, type: .withResponse)
+                    return true
+                default:
+                    log.debug("Unknown device!")
+                }
             }
         }
         log.error(errorMessage)
