@@ -25,6 +25,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var airStatus = false
     @Published var heatStatus = false
     @Published var deviceDetermination: DeviceDetermination = .unknown
+    @Published var hoursOfOperation = -1
     
     private var graphTimer: Timer?
     private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []

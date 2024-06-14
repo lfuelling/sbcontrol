@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct DeviceSettingsView: View {
+    @EnvironmentObject private var bleManager: BLEManager
+    
     var body: some View {
-        VStack {
-            Text("TODO!")
+        List {
+            Section {
+                Text("TODO!")
+            } header: {
+                Text("Device Settings")
+            }
+            
+            Section {
+                HStack {
+                    Text("Operation Time")
+                        .bold()
+                    Spacer()
+                    Text("\(bleManager.hoursOfOperation) hours")
+                }
+            } header: {
+                Text("Device Information")
+            }
         }.navigationTitle("Settings")
     }
 }

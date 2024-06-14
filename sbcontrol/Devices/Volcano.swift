@@ -84,6 +84,7 @@ class Volcano: SBDevice {
         operationHoursId: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received operationHours: \(intValue)")
+            bleManager.hoursOfOperation = Int(intValue)
         },
         ledBrightnessId: {data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })

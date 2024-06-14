@@ -11,6 +11,16 @@
         }
       }
     },
+    "%lld hours" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld hours"
+          }
+        }
+      }
+    },
     "+" : {
       "localizations" : {
         "en" : {
@@ -67,6 +77,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Device Control"
+          }
+        }
+      }
+    },
+    "Device Information" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device Information"
           }
         }
       }
@@ -182,6 +202,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Heat %@"
+          }
+        }
+      }
+    },
+    "Operation Time" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Operation Time"
           }
         }
       }

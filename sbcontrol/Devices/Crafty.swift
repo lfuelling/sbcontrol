@@ -110,6 +110,7 @@ class Crafty: SBDevice {
         hoursOfOperationId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received hoursOfOperationId: \(intValue)")
+            bleManager.hoursOfOperation = Int(intValue)
         },
         settingsId: { data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
