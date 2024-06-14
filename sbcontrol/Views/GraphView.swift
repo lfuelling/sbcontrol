@@ -85,7 +85,6 @@ struct GraphView: View {
                                  y: .value(yLabel, data.value))
                     }
                     .foregroundStyle(by: .value(label, dataSeries.label)) // TODO: use color from series
-                    .symbol(by: .value(label, dataSeries.label)) // TODO: use symbol from series
                 }
             }
             .chartYScale(domain: minValue...maxValue)
