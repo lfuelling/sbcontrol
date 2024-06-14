@@ -236,6 +236,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         self.graphTimer?.invalidate()
         self.graphTimer = nil
         withAnimation {
+            self.currentTemperatureGraphSeries = []
+            self.selectedTemperatureGraphSeries = []
+            self.airStatusGraphSeries = []
+            self.heaterStatusGraphSeries = []
             self.deviceDetermination = .unknown
             self.connected = false
             self.peripheral = nil
