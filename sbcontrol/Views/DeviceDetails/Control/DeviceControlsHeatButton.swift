@@ -28,7 +28,7 @@ struct DeviceControlsHeatButton: View {
     
     var body: some View {
         Button {
-            let result = bleManager.toggleHeat()
+            let _ = bleManager.toggleHeat()
         } label: {
 #if os(iOS)
             HStack {
@@ -39,7 +39,7 @@ struct DeviceControlsHeatButton: View {
 #else
             Content().padding()
 #endif
-        }.disabled(!bleManager.deviceDetermination.hasHeat)
+        }.disabled(!bleManager.deviceDetermination.hasHeat || bleManager.writingValue)
     }
 }
 

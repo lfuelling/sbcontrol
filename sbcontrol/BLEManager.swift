@@ -17,6 +17,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     @Published var peripherals: [CBPeripheral] = []
     
+    @Published var writingValue = false
     @Published var connected = false
     @Published var bluetoothNotAvailable = false
     @Published var selectedTemperature = -1
@@ -216,6 +217,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             log.info("Successfully wrote value for characteristic \(characteristic.uuid)!")
             peripheral.readValue(for: characteristic)
         }
+        
+        withAnimation {
+            writingValue = false
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -313,6 +318,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if let services = peripheral.services {
             let characteristics = services.flatMap({$0.characteristics ?? []})
             log.info("Writing temperature \(temperature)°C…")
+            withAnimation {
+                writingValue = true
+            }
             switch(deviceDetermination) {
             case .volcano: 
                 if let characteristic = characteristics.first(where: {$0.uuid == CBUUID(string: Volcano.selectedTempId)}) {

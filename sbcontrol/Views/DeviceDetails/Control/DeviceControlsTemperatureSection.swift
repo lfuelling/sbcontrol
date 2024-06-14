@@ -13,14 +13,14 @@ struct DeviceControlsTemperatureSection: View {
     var body: some View {
         HStack {
             Button {
-                bleManager.decreaseTemperature()
+                let _ = bleManager.decreaseTemperature()
             } label: {
                 VStack {
                     Text("-")
                         .monospaced()
                         .font(.largeTitle)
                 }.padding(4)
-            }.disabled(bleManager.selectedTemperature <= 57)
+            }.disabled(bleManager.selectedTemperature <= 57 || bleManager.writingValue)
             VStack {
                 Text("Current: \(bleManager.currentTemperature)°C")
                     .bold()
@@ -29,14 +29,14 @@ struct DeviceControlsTemperatureSection: View {
                     .font(.title)
             }.padding()
             Button {
-                bleManager.increaseTemperature()
+                let _ = bleManager.increaseTemperature()
             } label: {
                 VStack {
                     Text("+")
                         .monospaced()
                         .font(.largeTitle)
                 }.padding(4)
-            }.disabled(bleManager.selectedTemperature >= 230)
+            }.disabled(bleManager.selectedTemperature >= 230 || bleManager.writingValue)
         }
     }
 }
