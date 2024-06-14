@@ -45,7 +45,9 @@ struct DeviceDetailsView: View {
                     }
                 }
                 .navigationTitle(titleString)
+#if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
+#endif
                 .toolbar {
 #if os(macOS)
                     //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS as well.
