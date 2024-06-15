@@ -10,6 +10,8 @@ import Foundation
 protocol SBDevice {
     static var compatibleIds: [String] { get }
     
+    static var subscribableIds: [String] { get }
+    
     static func matchingName(_ name: String) -> Bool
     
     static var valueHandlers: [String: (_: Data, _: BLEManager) -> Void] { get }

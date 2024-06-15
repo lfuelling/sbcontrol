@@ -56,7 +56,18 @@ class Crafty: SBDevice {
         batTotalId,
         batDesignId,
         batDischargeCyclesId,
-        batChargeCyclesId
+        batChargeCyclesId,
+        heaterOnId,
+        heaterOffId
+    ]
+    
+    static var subscribableIds: [String] = [
+        currentTempId,
+        batteryId,
+        hoursOfOperationId,
+        settingsId,
+        powerId,
+        powerBoostHeatStateId
     ]
     
     static func matchingName(_ name: String) -> Bool {

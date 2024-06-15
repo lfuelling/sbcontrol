@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         if bleManager.peripheral == nil {
             DeviceSelectionView()
-        } else if bleManager.deviceDetermination == .unknown {
+        } else if !bleManager.dataLoadingFinished {
             LoaderView()
         } else {
             DeviceDetailsView()

@@ -30,6 +30,25 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var powerState = false
     @Published var serialNumber = ""
     
+    @Published var subscribedCharacteristics: [String] = []
+    
+    var dataLoadingFinished: Bool {
+        get {
+            switch(self.deviceDetermination) {
+            case .unknown:
+                return false
+            case .crafty:
+                return Crafty.subscribableIds.allSatisfy { elem in
+                    subscribedCharacteristics.contains(elem)
+                }
+            case .volcano:
+                return Volcano.subscribableIds.allSatisfy { elem in
+                    subscribedCharacteristics.contains(elem)
+                }
+            }
+        }
+    }
+    
     private var graphTimer: Timer?
     private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []
     private var selectedTemperatureGraphSeries: [GraphView.Datapoint] = []
@@ -69,6 +88,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     fileprivate func resetState() {
         log.info("Resetting State…")
         withAnimation {
+            self.subscribedCharacteristics = []
             self.deviceDetermination = .unknown
             self.connected = false
             self.peripheral = nil
@@ -176,12 +196,31 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         let characteristicId = characteristic.uuid.uuidString.lowercased()
         if (Volcano.compatibleIds.contains(characteristicId) ||
             Crafty.compatibleIds.contains(characteristicId)) {
-            log.info("Activating notifications for \(characteristicId)…")
-            peripheral.setNotifyValue(true, for: characteristic)
             log.debug("Reading initial value of \(characteristic.uuid.uuidString.lowercased())…")
             peripheral.readValue(for: characteristic)
+            
+            if(Volcano.subscribableIds.contains(characteristicId) ||
+               Crafty.subscribableIds.contains(characteristicId)) {
+                log.info("Activating notifications for \(characteristicId)…")
+                peripheral.setNotifyValue(true, for: characteristic)
+            }
         } else {
             log.debug("Unknown characteristic: \(characteristicId)")
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        let uuidString = characteristic.uuid.uuidString.lowercased()
+        
+        if let error = error {
+            log.error("Error changing notification state for \(uuidString): \(error.localizedDescription)")
+        } else {
+            subscribedCharacteristics.append(uuidString)
+            DispatchQueue.main.async {
+                withAnimation {
+                    self.objectWillChange.send()
+                }
+            }
         }
     }
     

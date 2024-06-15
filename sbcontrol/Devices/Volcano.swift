@@ -46,6 +46,14 @@ class Volcano: SBDevice {
                                 airOnId,
                                 airOffId]
     
+    static let subscribableIds: [String] = [currentTempId,
+                                            selectedTempId,
+                                            stat1Id,
+                                            autoShutoffId,
+                                            operationHoursId,
+                                            stat2Id,
+                                            stat3Id]
+    
     static func matchingName(_ name: String) -> Bool {
         return name.starts(with: "S&B")
     }
