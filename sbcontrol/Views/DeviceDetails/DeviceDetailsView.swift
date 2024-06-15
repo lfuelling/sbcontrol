@@ -50,7 +50,7 @@ struct DeviceDetailsView: View {
 #endif
                 .toolbar {
 #if os(macOS)
-                    //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS as well.
+                    //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS when a TabView is in the Toolbar as well.
                     ToolbarItem(placement: .navigation) {
                         Text(titleString)
                             .bold()
