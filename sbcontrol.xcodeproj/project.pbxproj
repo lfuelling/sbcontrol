@@ -21,6 +21,7 @@
 		CA2F1C652C1684E300BD2BC9 /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C642C1684E300BD2BC9 /* DeviceSettingsView.swift */; };
 		CA2F1C682C16855C00BD2BC9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C672C16855C00BD2BC9 /* SettingsView.swift */; };
 		CA2F1C6A2C16858C00BD2BC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */; };
+		CA5914232C1DDD82003A0399 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914222C1DDD82003A0399 /* LoaderView.swift */; };
 		CA5B8D0B2C1CABD3003ADBBB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */; };
 		CA5B8D0D2C1CAD19003ADBBB /* DeviceDetermination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */; };
 		CA5B8D0F2C1CC49B003ADBBB /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
@@ -70,6 +71,7 @@
 		CA2F1C642C1684E300BD2BC9 /* DeviceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingsView.swift; sourceTree = "<group>"; };
 		CA2F1C672C16855C00BD2BC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CA5914222C1DDD82003A0399 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetermination.swift; sourceTree = "<group>"; };
 		CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsBatterySection.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				CA2F1C552C15CB7B00BD2BC9 /* DeviceDetails */,
 				CA2F1C542C15CB6E00BD2BC9 /* DeviceSelection */,
 				CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */,
+				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				CA2F1C592C16683F00BD2BC9 /* DeviceControlsView.swift in Sources */,
 				CA5B8D0D2C1CAD19003ADBBB /* DeviceDetermination.swift in Sources */,
 				CA5B8D0F2C1CC49B003ADBBB /* DeviceControlsBatterySection.swift in Sources */,
+				CA5914232C1DDD82003A0399 /* LoaderView.swift in Sources */,
 				CACA759F2C1910BC003A984C /* Crafty.swift in Sources */,
 				CA5B8D132C1CCD05003ADBBB /* DeviceSettingsSection.swift in Sources */,
 				CA2F1C6A2C16858C00BD2BC9 /* AppDelegate.swift in Sources */,
