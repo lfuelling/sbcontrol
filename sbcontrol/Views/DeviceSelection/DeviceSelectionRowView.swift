@@ -24,9 +24,9 @@ struct DeviceSelectionRowView: View {
                     .fontWeight(hovering ? .bold : .regular)
                 Spacer()
             }
-        }.onHover(perform: {hovering in
+        }.onHover { hovering in
             self.hovering = hovering
-        })
+        }
 #if os(macOS)
         .onChange(of: hovering) {
             DispatchQueue.main.async {
@@ -39,7 +39,6 @@ struct DeviceSelectionRowView: View {
         }
         .padding(4)
         .buttonStyle(LinkButtonStyle())
-#else
 #endif
     }
 }

@@ -25,8 +25,11 @@ struct DeviceControlsTemperatureSection: View {
                 Text("Current: \(bleManager.currentTemperature)°C")
                     .bold()
                     .font(.title)
-                Text("Selected: \(bleManager.selectedTemperature)°C")
-                    .font(.title)
+                HStack(spacing: 0) {
+                    Text("Selected: ")
+                        .font(.title)
+                    SelectedTemperatureIndicator()
+                }
             }.padding()
             Button {
                 let _ = bleManager.increaseTemperature()

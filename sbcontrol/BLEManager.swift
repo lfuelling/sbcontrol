@@ -392,6 +392,15 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         return writeTemperature(temperature: selectedTemperature + 1)
     }
     
+    func setTemperature(_ temperature: Int) -> Bool {
+        if (temperature > 0 && temperature <= 230) {
+            return writeTemperature(temperature: temperature)
+        } else {
+            log.warning("Invalid temperature: \(temperature)°C")
+            return false
+        }
+    }
+
     fileprivate func writeTemperature(temperature: Int) -> Bool {
         if let services = peripheral.services {
             let characteristics = services.flatMap({$0.characteristics ?? []})
