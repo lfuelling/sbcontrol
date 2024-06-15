@@ -13,29 +13,27 @@ struct DeviceSelectionView: View {
     @State private var selectedItemId: UUID?
     
     var body: some View {
-        NavigationStack {
-            List(selection: $selectedItemId) {
-                Section {
-                    ForEach(bleManager.peripherals, id: \.identifier) { peripheral in
-                        DeviceSelectionRowView(peripheral: peripheral)
-                            .tag(peripheral.identifier)
-                    }
-                } header: {
-                    Text("Found Devices")
+        List(selection: $selectedItemId) {
+            Section {
+                ForEach(bleManager.peripherals, id: \.identifier) { peripheral in
+                    DeviceSelectionRowView(peripheral: peripheral)
+                        .tag(peripheral.identifier)
                 }
+            } header: {
+                Text("Found Devices")
             }
-            .navigationTitle("Device Selection")
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Label {
-                        Text("Scanning…")
-                    } icon: {
-                        ProgressView()
-                            .progressViewStyle(.circular)
+        }
+        .navigationTitle("Device Selection")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Label {
+                    Text("Scanning…")
+                } icon: {
+                    ProgressView()
+                        .progressViewStyle(.circular)
 #if os(macOS)
-                            .scaleEffect(0.6)
+                        .scaleEffect(0.6)
 #endif
-                    }
                 }
             }
         }.alert("Error", isPresented: Binding(get: {bleManager.bluetoothNotAvailable}, set: {_ in})) {

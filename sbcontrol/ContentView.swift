@@ -12,12 +12,14 @@ struct ContentView: View {
     @EnvironmentObject private var bleManager: BLEManager
     
     var body: some View {
-        if bleManager.peripheral == nil {
-            DeviceSelectionView()
-        } else if !bleManager.dataLoadingFinished {
-            LoaderView()
-        } else {
-            DeviceDetailsView()
+        NavigationStack {
+            if bleManager.peripheral == nil {
+                DeviceSelectionView()
+            } else if !bleManager.dataLoadingFinished {
+                LoaderView()
+            } else {
+                DeviceDetailsView()
+            }
         }
     }
 }

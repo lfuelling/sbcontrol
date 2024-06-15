@@ -17,65 +17,63 @@ struct DeviceDetailsView: View {
     @State private var selectedItem: MenuItem = .control
     
     var body: some View {
-        NavigationStack {
-            if let peripheral = bleManager.peripheral, bleManager.connected {
-                let titleString = "\(bleManager.deviceDetermination.value): \(peripheral.name ?? "Unnamed")"
-                
-                TabView {
-                    VStack {
-                        DeviceControlsView()
-                        Divider()
-                        DeviceControlChartView()
-                        Spacer()
-                    }
-                    .tabItem {
-                        Label {
-                            Text("Device Control")
-                        } icon: {
-                            Image(systemName: "slider.horizontal.3")
-                        }.tag(MenuItem.control)
-                    }
-                    
-                    DeviceSettingsView().tabItem {
-                        Label {
-                            Text("Device Settings")
-                        } icon: {
-                            Image(systemName: "gearshape.2")
-                        }.tag(MenuItem.settings)
-                    }
+        if let peripheral = bleManager.peripheral, bleManager.connected {
+            let titleString = "\(bleManager.deviceDetermination.value): \(peripheral.name ?? "Unnamed")"
+            
+            TabView {
+                VStack {
+                    DeviceControlsView()
+                    Divider()
+                    DeviceControlChartView()
+                    Spacer()
                 }
-                .navigationTitle(titleString)
+                .tabItem {
+                    Label {
+                        Text("Device Control")
+                    } icon: {
+                        Image(systemName: "slider.horizontal.3")
+                    }.tag(MenuItem.control)
+                }
+                
+                DeviceSettingsView().tabItem {
+                    Label {
+                        Text("Device Settings")
+                    } icon: {
+                        Image(systemName: "gearshape.2")
+                    }.tag(MenuItem.settings)
+                }
+            }
+            .navigationTitle(titleString)
 #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
 #endif
-                .toolbar {
+            .toolbar {
 #if os(macOS)
-                    //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS when a TabView is in the Toolbar as well.
-                    ToolbarItem(placement: .navigation) {
-                        Text(titleString)
-                            .bold()
-                    }
+                //TODO: remove this macOS-specific block when navigationTitle is rendered on macOS when a TabView is in the Toolbar as well.
+                ToolbarItem(placement: .navigation) {
+                    Text(titleString)
+                        .bold()
+                }
 #endif
-                    ToolbarItem(placement: .primaryAction) {
-                        Button {
-                            bleManager.disconnect()
-                        } label: {
-                            Label {
-                                Text("Disconnect")
-                            } icon: {
-                                Image(systemName: "door.left.hand.open")
-                            }
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        bleManager.disconnect()
+                    } label: {
+                        Label {
+                            Text("Disconnect")
+                        } icon: {
+                            Image(systemName: "door.left.hand.open")
                         }
                     }
                 }
-            } else {
-                VStack {
-                    Spacer()
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                    Spacer()
-                }.navigationTitle("Connecting…")
             }
+        } else {
+            VStack {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(.circular)
+                Spacer()
+            }.navigationTitle("Connecting…")
         }
     }
 }

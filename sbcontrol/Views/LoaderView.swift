@@ -40,7 +40,7 @@ struct LoaderView: View {
                 Spacer()
             }
             Spacer()
-        }
+        }.navigationTitle(Text("Connecting…"))
     }
 }
 
