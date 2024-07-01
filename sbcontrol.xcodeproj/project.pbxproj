@@ -23,6 +23,8 @@
 		CA2F1C6A2C16858C00BD2BC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */; };
 		CA5914232C1DDD82003A0399 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914222C1DDD82003A0399 /* LoaderView.swift */; };
 		CA5914262C1DF0F0003A0399 /* TemperatureSelectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914252C1DF0F0003A0399 /* TemperatureSelectionSheet.swift */; };
+		CA5B287F2C3333DE00F0FF5A /* DeviceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B287E2C3333D900F0FF5A /* DeviceState.swift */; };
+		CA5B28812C3333E500F0FF5A /* MetricsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B28802C3333E200F0FF5A /* MetricsState.swift */; };
 		CA5B8D0B2C1CABD3003ADBBB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */; };
 		CA5B8D0D2C1CAD19003ADBBB /* DeviceDetermination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */; };
 		CA5B8D0F2C1CC49B003ADBBB /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
@@ -75,6 +77,8 @@
 		CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA5914222C1DDD82003A0399 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		CA5914252C1DF0F0003A0399 /* TemperatureSelectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureSelectionSheet.swift; sourceTree = "<group>"; };
+		CA5B287E2C3333D900F0FF5A /* DeviceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceState.swift; sourceTree = "<group>"; };
+		CA5B28802C3333E200F0FF5A /* MetricsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsState.swift; sourceTree = "<group>"; };
 		CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetermination.swift; sourceTree = "<group>"; };
 		CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsBatterySection.swift; sourceTree = "<group>"; };
@@ -198,6 +202,16 @@
 			path = Temperature;
 			sourceTree = "<group>";
 		};
+		CA5B287C2C3333B600F0FF5A /* State */ = {
+			isa = PBXGroup;
+			children = (
+				CA5B28802C3333E200F0FF5A /* MetricsState.swift */,
+				CA5B287E2C3333D900F0FF5A /* DeviceState.swift */,
+				CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		CA94E8642C147E75009D33E0 = {
 			isa = PBXGroup;
 			children = (
@@ -221,17 +235,17 @@
 		CA94E86F2C147E75009D33E0 /* sbcontrol */ = {
 			isa = PBXGroup;
 			children = (
-				CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */,
+				CA5B287C2C3333B600F0FF5A /* State */,
 				CACA75992C190302003A984C /* Devices */,
 				CA2F1C4D2C15C76C00BD2BC9 /* Views */,
 				CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */,
 				CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */,
 				CA2F1C422C14E26800BD2BC9 /* ContentView.swift */,
-				CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */,
+				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
 				CA94E8742C147E76009D33E0 /* Assets.xcassets */,
 				CA94E8762C147E76009D33E0 /* sbcontrol.entitlements */,
+				CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */,
 				CA94E8772C147E76009D33E0 /* Preview Content */,
-				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
 			);
 			path = sbcontrol;
 			sourceTree = "<group>";
@@ -428,12 +442,14 @@
 				CA5B8D112C1CCCE0003ADBBB /* DeviceInformationSection.swift in Sources */,
 				CA2F1C412C14E24F00BD2BC9 /* BLEManager.swift in Sources */,
 				CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */,
+				CA5B28812C3333E500F0FF5A /* MetricsState.swift in Sources */,
 				CACA759B2C190317003A984C /* Volcano.swift in Sources */,
 				CACA759D2C190F21003A984C /* SBDevice.swift in Sources */,
 				CA2F1C652C1684E300BD2BC9 /* DeviceSettingsView.swift in Sources */,
 				CACA75942C18D171003A984C /* DeviceControlsTemperatureSection.swift in Sources */,
 				CA2F1C4C2C15B26500BD2BC9 /* log.swift in Sources */,
 				CA2F1C432C14E26800BD2BC9 /* ContentView.swift in Sources */,
+				CA5B287F2C3333DE00F0FF5A /* DeviceState.swift in Sources */,
 				CA2F1C572C15CBC000BD2BC9 /* DeviceSelectionView.swift in Sources */,
 				CA2F1C512C15C7DF00BD2BC9 /* DeviceDetailsView.swift in Sources */,
 				CA2F1C682C16855C00BD2BC9 /* SettingsView.swift in Sources */,

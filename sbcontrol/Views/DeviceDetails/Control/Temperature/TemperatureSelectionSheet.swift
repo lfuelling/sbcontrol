@@ -11,7 +11,7 @@ import Combine
 struct TemperatureSelectionSheet: View {
     @Environment(\.dismiss) private var dismiss
     
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     @State private var selectedTemperature = "159"
     
@@ -19,8 +19,8 @@ struct TemperatureSelectionSheet: View {
     
     fileprivate func setTemperature() {
         log.info("Settings temperature to \(selectedTemperature)°C…")
-        let temperatureToSet = Int(selectedTemperature) ?? bleManager.currentTemperature
-        let _ = bleManager.setTemperature(temperatureToSet)
+        let temperatureToSet = Int(selectedTemperature) ?? deviceState.currentTemperature
+        let _ = deviceState.setTemperature(temperatureToSet)
         dismiss()
     }
     
@@ -47,7 +47,7 @@ struct TemperatureSelectionSheet: View {
                             }
                         }
                         .onAppear {
-                            self.selectedTemperature = "\(bleManager.selectedTemperature)"
+                            self.selectedTemperature = "\(deviceState.selectedTemperature)"
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 withAnimation {
                                     textFieldFocused = true

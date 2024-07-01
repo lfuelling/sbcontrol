@@ -9,11 +9,11 @@ import SwiftUI
 import Charts
 
 struct DeviceControlChartView: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var metricsState: MetricsState
     
     var body: some View {
         GraphView(label: "Temperatures", 
-                  data: bleManager.graphSeries,
+                  data: metricsState.graphSeries,
                   minValue: 0,
                   maxValue: 230,
                   xLabel: "Time",

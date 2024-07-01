@@ -8,27 +8,27 @@
 import SwiftUI
 
 fileprivate struct Content: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
         VStack {
-            Image(systemName: bleManager.heatStatus ? "thermometer.high" : "thermometer.medium.slash")
+            Image(systemName: deviceState.heatStatus ? "thermometer.high" : "thermometer.medium.slash")
                 .resizable()
                 .frame(width: 32, height: 32)
-            Text("Heat \(bleManager.heatStatus ? "On" : "Off")")
+            Text("Heat \(deviceState.heatStatus ? "On" : "Off")")
                 .bold()
                 .font(.headline)
-                .foregroundStyle(bleManager.heatStatus ? Color.red : Color.primary)
+                .foregroundStyle(deviceState.heatStatus ? Color.red : Color.primary)
         }
     }
 }
 
 struct DeviceControlsHeatButton: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
         Button {
-            let _ = bleManager.toggleHeat()
+            let _ = deviceState.toggleHeat()
         } label: {
 #if os(iOS)
             HStack {
@@ -39,7 +39,7 @@ struct DeviceControlsHeatButton: View {
 #else
             Content().padding()
 #endif
-        }.disabled(!bleManager.deviceDetermination.hasHeat || bleManager.writingValue)
+        }.disabled(!deviceState.deviceDetermination.hasHeat || deviceState.writingValue)
     }
 }
 

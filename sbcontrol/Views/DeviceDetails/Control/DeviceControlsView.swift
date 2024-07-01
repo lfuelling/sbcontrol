@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DeviceControlsView: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
 #if os(macOS)
-        if(bleManager.deviceDetermination.hasAir) {
+        if(deviceState.deviceDetermination.hasAir) {
             HStack {
                 DeviceControlsHeatButton()
                 Spacer()

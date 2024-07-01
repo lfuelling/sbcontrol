@@ -60,77 +60,77 @@ class Volcano: SBDevice {
         return name.starts(with: "S&B")
     }
     
-    static let valueHandlers: [String: (_: Data, _: BLEManager) -> Void] = [
-        currentTempId: {data, bleManager in
+    static let valueHandlers: [String: (_: Data, _: DeviceState) -> Void] = [
+        currentTempId: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             let currentTemperature = Int(intValue / 10)
             log.info("Received current temperature: \(currentTemperature)°C")
-            bleManager.currentTemperature = currentTemperature
+            deviceState.currentTemperature = currentTemperature
         },
-        selectedTempId: {data, bleManager in
+        selectedTempId: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             let selectedTemperature = Int(intValue / 10)
             log.info("Received selected temperature: \(selectedTemperature)°C")
-            bleManager.selectedTemperature = selectedTemperature
+            deviceState.selectedTemperature = selectedTemperature
         },
-        stat1Id: {data, bleManager in
+        stat1Id: {data, deviceState in
             let heaterValue = Int(data[0])
             let heaterStatus = (heaterValue & 0x0020) != 0
             log.info("Received heater status: \(heaterStatus)")
-            bleManager.heatStatus = heaterStatus
+            deviceState.heatStatus = heaterStatus
             
             let airValue = Int(data[1])
             let airPumpStatus = (airValue & 0x0030) != 0
             log.info("Received air pump status: \(heaterStatus)")
-            bleManager.airStatus = airPumpStatus
+            deviceState.airStatus = airPumpStatus
         },
-        autoShutoffId: {data, bleManager in
+        autoShutoffId: {data, deviceState in
             let intValue = UInt8(littleEndian: data.withUnsafeBytes { $0.load(as: UInt8.self) })
             log.info("Received auto shut off enabled: \(intValue)")
         },
-        autoShutOffTimeId: {data, bleManager in
+        autoShutOffTimeId: {data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received autoShutOffTime: \(intValue)")
-            bleManager.deviceAutoShutoffTime = Int(intValue)
+            deviceState.deviceAutoShutoffTime = Int(intValue)
         },
-        operationHoursId: {data, bleManager in
+        operationHoursId: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received operationHours: \(intValue)")
-            bleManager.hoursOfOperation = Int(intValue)
+            deviceState.hoursOfOperation = Int(intValue)
         },
-        ledBrightnessId: {data, bleManager in
+        ledBrightnessId: {data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received ledBrightness: \(intValue)")
-            bleManager.deviceLEDBrightness = Int(intValue)
+            deviceState.deviceLEDBrightness = Int(intValue)
         },
-        serialNumberId: {data, bleManager in
+        serialNumberId: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received serialNumber: \(intValue)")
-            bleManager.serialNumber = "\(intValue)"
+            deviceState.serialNumber = "\(intValue)"
         },
-        firmwareVersionId: {data, bleManager in
+        firmwareVersionId: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             if let versionString = String(data: data, encoding: .utf8) {
                 log.info("Received firmwareVersion: \(versionString) (\(intValue))")
-                bleManager.deviceFirmwareVersion = versionString
+                deviceState.deviceFirmwareVersion = versionString
             } else {
                 log.error("Unable to get version string!")
             }
         },
-        bleFirmwareVersionId: {data, bleManager in
+        bleFirmwareVersionId: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             if let versionString = String(data: data, encoding: .utf8) {
                 log.info("Received bleFirmwareVersion: \(versionString) (\(intValue))")
-                bleManager.deviceBLEFirmwareVersion = versionString
+                deviceState.deviceBLEFirmwareVersion = versionString
             } else {
                 log.error("Unable to get BLW version string!")
             }
         },
-        stat2Id: {data, bleManager in
+        stat2Id: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received stat2: \(intValue)")
         },
-        stat3Id: {data, bleManager in
+        stat3Id: {data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received stat3: \(intValue)")
         }

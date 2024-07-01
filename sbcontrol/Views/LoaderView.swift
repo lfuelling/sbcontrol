@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoaderView: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
         VStack {
@@ -18,13 +18,13 @@ struct LoaderView: View {
                 VStack {
                     ProgressView().progressViewStyle(.circular)
                     
-                    if (bleManager.deviceDetermination == .unknown) {
+                    if (deviceState.deviceDetermination == .unknown) {
                         Text("Determining Device…")
                             .foregroundStyle(.secondary)
                             .padding(4)
                     } else {
-                        let current = bleManager.subscribedCharacteristics.count + 1
-                        let total: Int = switch(bleManager.deviceDetermination) {
+                        let current = deviceState.subscribedCharacteristics.count + 1
+                        let total: Int = switch(deviceState.deviceDetermination) {
                         case .unknown:
                             -1
                         case .crafty:

@@ -76,109 +76,107 @@ class Crafty: SBDevice {
         return name.starts(with: "STORZ&BICKEL") || name.starts(with: "Storz&Bickel")
     }
     
-    static var valueHandlers: [String : (Data, BLEManager) -> Void] = [
-        currentTempId: { data, bleManager in
+    static var valueHandlers: [String : (Data, DeviceState) -> Void] = [
+        currentTempId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             let currentTemperature = Int(intValue / 10)
             log.info("Received current temperature: \(currentTemperature)°C")
-            bleManager.currentTemperature = currentTemperature
+            deviceState.currentTemperature = currentTemperature
         },
-        selectedTempId: { data, bleManager in
+        selectedTempId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             let selectedTemperature = Int(intValue / 10)
             log.info("Received selected temperature: \(selectedTemperature)°C")
-            bleManager.selectedTemperature = selectedTemperature
+            deviceState.selectedTemperature = selectedTemperature
         },
-        boostId: { data, bleManager in
+        boostId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received boostId: \(intValue)")
         },
-        batteryId: { data, bleManager in
+        batteryId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batteryId: \(intValue)")
-            bleManager.batteryPercent = Int(intValue)
+            deviceState.batteryPercent = Int(intValue)
         },
-        ledId: { data, bleManager in
+        ledId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received ledId: \(intValue)")
         },
-        metaDataId: { data, bleManager in
+        metaDataId: { data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received metaDataId: \(intValue)")
         },
-        modelId: { data, bleManager in
+        modelId: { data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received modelId: \(intValue)")
         },
-        versionId: { data, bleManager in
+        versionId: { data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received versionId: \(intValue)")
         },
-        serialId: { data, bleManager in
+        serialId: { data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received serialId: \(intValue)")
-            bleManager.serialNumber = "\(intValue)"
+            deviceState.serialNumber = "\(intValue)"
         },
-        miscDataId: { data, bleManager in
+        miscDataId: { data, deviceState in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
             log.info("Received miscDataId: \(intValue)")
         },
-        hoursOfOperationId: { data, bleManager in
+        hoursOfOperationId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received hoursOfOperationId: \(intValue)")
-            bleManager.hoursOfOperation = Int(intValue)
+            deviceState.hoursOfOperation = Int(intValue)
         },
-        settingsId: { data, bleManager in
+        settingsId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received settingsId: \(intValue)")
         },
-        powerId: { data, bleManager in
+        powerId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received powerId: \(intValue)")
             if(intValue == 32916) {
-                bleManager.powerState = true
+                deviceState.powerState = true
             } else if(intValue == 16) {
-                bleManager.powerState = false
+                deviceState.powerState = false
             }
         },
-        chargingId: { data, bleManager in
+        chargingId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received chargingId: \(intValue)")
-            bleManager.powerState = intValue == 2
+            deviceState.powerState = intValue == 2
         },
-        powerBoostHeatStateId: { data, bleManager in
+        powerBoostHeatStateId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received powerBoostHeatStateId: \(intValue)")
             let powerState = (Int(data[0]) & 0x10) == 0x10
             let heatingState = (Int(data[0]) & 0x5) == 0x5
             let boostState = (Int(data[0]) & 0x20) == 0x20
             
-            bleManager.heatStatus = heatingState
+            deviceState.heatStatus = heatingState
             log.debug("Decoded heater status: \(heatingState)")
             log.debug("Decoded power status: \(powerState)")
             log.debug("Decoded boost status: \(boostState)")
         },
-        batRemainingId: { data, bleManager in
+        batRemainingId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batRemainingId: \(intValue)")
         },
-        batTotalId: { data, bleManager in
+        batTotalId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batTotalId: \(intValue)")
         },
-        batDesignId: { data, bleManager in
+        batDesignId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batDesignId: \(intValue)")
         },
-        batDischargeCyclesId: { data, bleManager in
+        batDischargeCyclesId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batDischargeCyclesId: \(intValue)")
         },
-        batChargeCyclesId: { data, bleManager in
+        batChargeCyclesId: { data, deviceState in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received batChargeCyclesId: \(intValue)")
         }
     ]
-    
-    
 }

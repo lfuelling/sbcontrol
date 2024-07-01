@@ -1,21 +1,16 @@
 //
-//  BLEManager.swift
+//  DeviceState.swift
 //  sbcontrol
 //
-//  Created by Lukas Fülling on 6/8/24.
+//  Created by Lukas Fülling on 7/1/24.
 //
 
 import SwiftUI
 import Combine
 import CoreBluetooth
 
-class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    @AppStorage("graphMaxEntries") private var graphMaxEntries: Int = 300
-    
-    var centralManager: CBCentralManager!
+class DeviceState: NSObject, ObservableObject, CBPeripheralDelegate {
     var peripheral: CBPeripheral!
-    
-    @Published var peripherals: [CBPeripheral] = []
     
     @Published var writingValue = false
     @Published var connected = false
@@ -24,7 +19,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var currentTemperature = -1
     @Published var airStatus = false
     @Published var heatStatus = false
+    
     @Published var deviceDetermination: DeviceDetermination = .unknown
+    
     @Published var hoursOfOperation = -1
     @Published var batteryPercent = -1
     @Published var powerState = false
@@ -53,53 +50,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
     
-    private var graphTimer: Timer?
-    private var currentTemperatureGraphSeries: [GraphView.Datapoint] = []
-    private var selectedTemperatureGraphSeries: [GraphView.Datapoint] = []
-    private var airStatusGraphSeries: [GraphView.Datapoint] = []
-    private var heaterStatusGraphSeries: [GraphView.Datapoint] = []
-    var graphSeries: [GraphView.DataSeries] {
-        let currentTemperatureSeries = GraphView.DataSeries(label: "Current Temperature (°C)",
-                                                            data: self.currentTemperatureGraphSeries,
-                                                            booleanValue: false,
-                                                            color: Color.red,
-                                                            symbol: .circle)
-        let selectedTemperatureSeries = GraphView.DataSeries(label: "Selected Temperature (°C)",
-                                                             data: self.selectedTemperatureGraphSeries,
-                                                             booleanValue: false,
-                                                             color: Color.green,
-                                                             symbol: .diamond)
-        let airStatusSeries = GraphView.DataSeries(label: "Air Pump",
-                                                   data: self.airStatusGraphSeries,
-                                                   booleanValue: true,
-                                                   color: .blue,
-                                                   symbol: .triangle)
-        let heaterStatusSeries = GraphView.DataSeries(label: "Heater",
-                                                      data: self.heaterStatusGraphSeries,
-                                                      booleanValue: true,
-                                                      color: .red,
-                                                      symbol: .plus)
-        return [currentTemperatureSeries, selectedTemperatureSeries, airStatusSeries, heaterStatusSeries]
-    }
-    
-    override init() {
-        log.debug("Initializing…")
-        super.init()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
-        centralManager.delegate = self
-    }
-    
-    fileprivate func resetState() {
+    func resetState() {
         log.info("Resetting State…")
         withAnimation {
             self.subscribedCharacteristics = []
             self.deviceDetermination = .unknown
             self.connected = false
             self.peripheral = nil
-            self.currentTemperatureGraphSeries = []
-            self.selectedTemperatureGraphSeries = []
-            self.airStatusGraphSeries = []
-            self.heaterStatusGraphSeries = []
             self.powerState = false
             self.batteryPercent = -1
             self.currentTemperature = -1
@@ -108,53 +65,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             self.heatStatus = false
             self.writingValue = false
             self.serialNumber = ""
-        }
-    }
-    
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == .poweredOn {
-            log.info("Starting scan…")
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-        } else {
-            log.error("Bluetooth not available!")
-            bluetoothNotAvailable = true
-        }
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        let name = peripheral.name ?? "Unnamed"
-        
-        if !peripherals.contains(peripheral) && (
-            Volcano.matchingName(name) ||
-            Crafty.matchingName(name)
-        ) {
-            log.info("Found device \"\(name)\", with \(RSSI)…")
-            withAnimation {
-                self.peripherals.append(peripheral)
-            }
-        }
-    }
-    
-    func connectDevice(peripheral: CBPeripheral) {
-        withAnimation {
-            self.peripheral = peripheral
-        }
-        Task {
-            log.info("Stopping scan…")
-            self.centralManager.stopScan()
-            self.peripheral.delegate = self
-            log.info("Connecting to \"\(peripheral.name ?? "Unnamed")\"…")
-            self.centralManager.connect(self.peripheral, options: nil)
-        }
-    }
-    
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        log.info("Connected to \"\(peripheral.name ?? "Unnamed")\"!")
-        self.connected = true
-        self.deviceDetermination = .unknown
-        self.peripheral.discoverServices(nil)
-        self.graphTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            self.createGraphEntry()
         }
     }
     
@@ -237,36 +147,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
     
-    fileprivate func createGraphEntry() {
-        let entryDate = Date.now.timeIntervalSince1970
-        self.currentTemperatureGraphSeries.append(GraphView.Datapoint(time: entryDate,
-                                                                      value: Double(self.currentTemperature)))
-        self.selectedTemperatureGraphSeries.append(GraphView.Datapoint(time: entryDate,
-                                                                       value: Double(self.selectedTemperature)))
-        self.airStatusGraphSeries.append(GraphView.Datapoint(time: entryDate,
-                                                             value: self.airStatus ? 1 : 0))
-        self.heaterStatusGraphSeries.append(GraphView.Datapoint(time: entryDate,
-                                                                value: self.heatStatus ? 1 : 0))
-        
-        if(currentTemperatureGraphSeries.count > graphMaxEntries) {
-            currentTemperatureGraphSeries.remove(at: 0)
-        }
-        if(selectedTemperatureGraphSeries.count > graphMaxEntries) {
-            selectedTemperatureGraphSeries.remove(at: 0)
-        }
-        if(airStatusGraphSeries.count > graphMaxEntries) {
-            airStatusGraphSeries.remove(at: 0)
-        }
-        if(heaterStatusGraphSeries.count > graphMaxEntries) {
-            heaterStatusGraphSeries.remove(at: 0)
-        }
-        DispatchQueue.main.async {
-            withAnimation {
-                self.objectWillChange.send()
-            }
-        }
-    }
-    
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let value = characteristic.value {
             let characteristicUUID = characteristic.uuid.uuidString.lowercased()
@@ -290,33 +170,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             writingValue = false
         }
     }
-    
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        if let error = error {
-            log.error("Failed to disconnect from peripheral: \(error)")
-        } else {
-            log.info("Disconnected from \"\(peripheral.name ?? "Unnamed")\"!")
-        }
-        log.debug("Cancelling timer…")
-        self.graphTimer?.invalidate()
-        self.graphTimer = nil
-        self.resetState()
-        log.info("Starting scan…")
-        self.centralManager.scanForPeripherals(withServices: nil, options: nil)
-    }
-    
-    func disconnect() {
-        withAnimation {
-            self.connected = false
-        }
-        if let peripheral = self.peripheral {
-            log.info("Disconnecting from \"\(peripheral.name ?? "Unnamed")\"…")
-            self.centralManager.cancelPeripheralConnection(peripheral)
-        } else {
-            log.warning("Unable to cancel peripheral connection!")
-        }
-    }
-    
+
     func toggleAirPump() -> Bool {
         switch(deviceDetermination) {
         case .volcano:
@@ -413,7 +267,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                 writingValue = true
             }
             switch(deviceDetermination) {
-            case .volcano: 
+            case .volcano:
                 if let characteristic = characteristics.first(where: {$0.uuid == CBUUID(string: Volcano.selectedTempId)}) {
                     let scaledIntTemp = Int32(temperature * 10)
                     let data = withUnsafeBytes(of: scaledIntTemp.littleEndian) { Data($0) }

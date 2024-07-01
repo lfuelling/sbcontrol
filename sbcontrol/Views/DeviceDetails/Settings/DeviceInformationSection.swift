@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DeviceInformationSection: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
         Section {
@@ -16,7 +16,7 @@ struct DeviceInformationSection: View {
                 Text("Operation Time")
                     .bold()
                 Spacer()
-                Text("\(bleManager.hoursOfOperation) hours")
+                Text("\(deviceState.hoursOfOperation) hours")
             }
 #if os(macOS)
             .padding(.vertical, 4)
@@ -25,29 +25,29 @@ struct DeviceInformationSection: View {
                 Text("Serial Number")
                     .bold()
                 Spacer()
-                Text(bleManager.serialNumber)
+                Text(deviceState.serialNumber)
                     .monospaced()
             }
 #if os(macOS)
             .padding(.vertical, 4)
 #endif
-            if(!bleManager.deviceFirmwareVersion.isEmpty) {
+            if(!deviceState.deviceFirmwareVersion.isEmpty) {
                 HStack {
                     Text("Firmware Version")
                         .bold()
                     Spacer()
-                    Text("\(bleManager.deviceFirmwareVersion)")
+                    Text("\(deviceState.deviceFirmwareVersion)")
                 }
 #if os(macOS)
                 .padding(.vertical, 4)
 #endif
             }
-            if(!bleManager.deviceBLEFirmwareVersion.isEmpty) {
+            if(!deviceState.deviceBLEFirmwareVersion.isEmpty) {
                 HStack {
                     Text("BLE Firmware Version")
                         .bold()
                     Spacer()
-                    Text("\(bleManager.deviceBLEFirmwareVersion)")
+                    Text("\(deviceState.deviceBLEFirmwareVersion)")
                 }
 #if os(macOS)
                 .padding(.vertical, 4)

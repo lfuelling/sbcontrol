@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SelectedTemperatureIndicator: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     @State private var hovering = false
     @State private var sheetVisible = false
     
     var body: some View {
         VStack {
-            Text("\(bleManager.selectedTemperature)°C")
+            Text("\(deviceState.selectedTemperature)°C")
                 .font(.title)
         }
         .onTapGesture {

@@ -8,27 +8,27 @@
 import SwiftUI
 
 fileprivate struct Content: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
         VStack {
-            Image(systemName: bleManager.airStatus ? "humidifier.and.droplets.fill" : "humidifier.and.droplets")
+            Image(systemName: deviceState.airStatus ? "humidifier.and.droplets.fill" : "humidifier.and.droplets")
                 .resizable()
                 .frame(width: 32, height: 32)
-            Text("Air \(bleManager.airStatus ? "On" : "Off")")
+            Text("Air \(deviceState.airStatus ? "On" : "Off")")
                 .bold()
                 .font(.headline)
-                .foregroundStyle(bleManager.airStatus ? Color.blue : Color.primary)
+                .foregroundStyle(deviceState.airStatus ? Color.blue : Color.primary)
         }
     }
 }
 
 struct DeviceControlsAirButton: View {
-    @EnvironmentObject private var bleManager: BLEManager
+    @EnvironmentObject private var deviceState: DeviceState
     
     var body: some View {
         Button {
-            let _ = bleManager.toggleAirPump()
+            let _ = deviceState.toggleAirPump()
         } label: {
 #if os(iOS)
             HStack {
@@ -39,7 +39,7 @@ struct DeviceControlsAirButton: View {
 #else
             Content().padding()
 #endif
-        }.disabled(!bleManager.deviceDetermination.hasAir || bleManager.writingValue)
+        }.disabled(!deviceState.deviceDetermination.hasAir || deviceState.writingValue)
     }
 }
 
