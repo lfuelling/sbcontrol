@@ -12,6 +12,7 @@ class Volcano: SBDevice {
     static let hasAir: Bool = true
     static let hasBattery: Bool = false
     static let hasScreen: Bool = true
+    static let hasAutoshutoffTime: Bool = true
     
     static let currentTempId = "10110001-5354-4f52-5a26-4249434b454c" // Current temperature
     static let selectedTempId = "10110003-5354-4f52-5a26-4249434b454c" // Set temperature
@@ -90,6 +91,7 @@ class Volcano: SBDevice {
         autoShutOffTimeId: {data, bleManager in
             let intValue = UInt16(littleEndian: data.withUnsafeBytes { $0.load(as: UInt16.self) })
             log.info("Received autoShutOffTime: \(intValue)")
+            bleManager.deviceAutoShutoffTime = Int(intValue)
         },
         operationHoursId: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })

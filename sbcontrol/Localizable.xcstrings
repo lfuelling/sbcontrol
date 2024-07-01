@@ -129,6 +129,38 @@
         }
       }
     },
+    "Auto-Shutoff Time (%lf min)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abschaltzeit (%lf Min)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-Shutoff Time (%lf min)"
+          }
+        }
+      }
+    },
+    "Auto-Shutoff Time (%lld min)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abschaltzeit (%lld Min)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-Shutoff Time (%lld min)"
+          }
+        }
+      }
+    },
     "BLE Firmware Version" : {
       "localizations" : {
         "de" : {
@@ -486,8 +518,21 @@
         }
       }
     },
-    "LED Brightness" : {
-
+    "LED Brightness (%lld)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildschirmhelligkeit (%lld)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LED Brightness (%lld)"
+          }
+        }
+      }
     },
     "Loading data (%lld/%lld)…" : {
       "localizations" : {

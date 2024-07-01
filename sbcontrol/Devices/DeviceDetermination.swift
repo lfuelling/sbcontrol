@@ -64,4 +64,15 @@ enum DeviceDetermination: String {
             Volcano.hasScreen
         }
     }
+    
+    var hasAutoshutoffTime: Bool {
+        switch self {
+        case .unknown:
+            false
+        case .crafty:
+            Crafty.hasAutoshutoffTime
+        case .volcano:
+            Volcano.hasAutoshutoffTime
+        }
+    }
 }

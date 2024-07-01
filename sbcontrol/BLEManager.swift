@@ -457,7 +457,32 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
         }
         
-        log.error("Unable to write temperature!")
+        log.error("Unable to write LED brightness!")
+        return false
+    }
+    
+    func setAutoShutoffTime(_ newValue: Int) -> Bool {
+        if let services = peripheral.services {
+            let characteristics = services.flatMap({$0.characteristics ?? []})
+            log.info("Writing auto shutoff time \(newValue)…")
+            withAnimation {
+                writingValue = true
+            }
+            switch(deviceDetermination) {
+            case .volcano:
+                if let characteristic = characteristics.first(where: {$0.uuid == CBUUID(string: Volcano.autoShutOffTimeId)}) {
+                    let data = withUnsafeBytes(of: UInt16(newValue).littleEndian) { Data($0) }
+                    peripheral.writeValue(data, for: characteristic, type: .withResponse)
+                    return true
+                }
+            case .crafty:
+                log.warning("Device doesn't support auto shutoff time.")
+            default:
+                log.debug("Unknown device!")
+            }
+        }
+        
+        log.error("Unable to write auto shutoff time!")
         return false
     }
 }

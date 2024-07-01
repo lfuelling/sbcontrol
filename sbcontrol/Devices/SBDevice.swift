@@ -17,10 +17,8 @@ protocol SBDevice {
     static var valueHandlers: [String: (_: Data, _: BLEManager) -> Void] { get }
     
     static var hasHeat: Bool { get }
-    
     static var hasAir: Bool { get }
-    
     static var hasBattery: Bool { get }
-    
     static var hasScreen: Bool { get }
+    static var hasAutoshutoffTime: Bool { get }
 }

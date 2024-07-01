@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeviceInformationSection: View {
     @EnvironmentObject private var bleManager: BLEManager
-
+    
     var body: some View {
         Section {
             HStack {
@@ -18,6 +18,9 @@ struct DeviceInformationSection: View {
                 Spacer()
                 Text("\(bleManager.hoursOfOperation) hours")
             }
+#if os(macOS)
+            .padding(.vertical, 4)
+#endif
             HStack {
                 Text("Serial Number")
                     .bold()
@@ -25,6 +28,9 @@ struct DeviceInformationSection: View {
                 Text(bleManager.serialNumber)
                     .monospaced()
             }
+#if os(macOS)
+            .padding(.vertical, 4)
+#endif
             if(!bleManager.deviceFirmwareVersion.isEmpty) {
                 HStack {
                     Text("Firmware Version")
@@ -32,6 +38,9 @@ struct DeviceInformationSection: View {
                     Spacer()
                     Text("\(bleManager.deviceFirmwareVersion)")
                 }
+#if os(macOS)
+                .padding(.vertical, 4)
+#endif
             }
             if(!bleManager.deviceBLEFirmwareVersion.isEmpty) {
                 HStack {
@@ -40,6 +49,9 @@ struct DeviceInformationSection: View {
                     Spacer()
                     Text("\(bleManager.deviceBLEFirmwareVersion)")
                 }
+#if os(macOS)
+                .padding(.vertical, 4)
+#endif
             }
         } header: {
             Text("Device Information")
