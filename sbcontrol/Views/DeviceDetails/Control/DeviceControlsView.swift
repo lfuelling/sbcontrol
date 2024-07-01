@@ -35,7 +35,7 @@ struct DeviceControlsView: View {
             DeviceControlsBatterySection()
             DeviceControlsTemperatureSection()
             DeviceControlsHeatButton()
-            if(bleManager.deviceDetermination.hasAir) {
+            if(deviceState.deviceDetermination.hasAir) {
                 DeviceControlsAirButton()
             }
         }.padding()
