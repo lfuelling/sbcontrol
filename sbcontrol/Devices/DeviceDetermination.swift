@@ -53,4 +53,15 @@ enum DeviceDetermination: String {
             Volcano.hasBattery
         }
     }
+    
+    var hasScreen: Bool {
+        switch self {
+        case .unknown:
+            false
+        case .crafty:
+            Crafty.hasScreen
+        case .volcano:
+            Volcano.hasScreen
+        }
+    }
 }

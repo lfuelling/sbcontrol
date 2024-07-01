@@ -31,6 +31,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var serialNumber = ""
     @Published var deviceFirmwareVersion = ""
     @Published var deviceBLEFirmwareVersion = ""
+    @Published var deviceLEDBrightness = -1
+    @Published var deviceAutoShutoffTime = -1
     
     @Published var subscribedCharacteristics: [String] = []
     
@@ -425,6 +427,31 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                     peripheral.writeValue(data, for: characteristic, type: .withResponse)
                     return true
                 }
+            default:
+                log.debug("Unknown device!")
+            }
+        }
+        
+        log.error("Unable to write temperature!")
+        return false
+    }
+    
+    func setLEDBrightness(_ newValue: Int) -> Bool {
+        if let services = peripheral.services {
+            let characteristics = services.flatMap({$0.characteristics ?? []})
+            log.info("Writing LED Brightness \(newValue)…")
+            withAnimation {
+                writingValue = true
+            }
+            switch(deviceDetermination) {
+            case .volcano:
+                if let characteristic = characteristics.first(where: {$0.uuid == CBUUID(string: Volcano.ledBrightnessId)}) {
+                    let data = withUnsafeBytes(of: UInt16(newValue).littleEndian) { Data($0) }
+                    peripheral.writeValue(data, for: characteristic, type: .withResponse)
+                    return true
+                }
+            case .crafty:
+                log.warning("Device doesn't support LED brightness.")
             default:
                 log.debug("Unknown device!")
             }

@@ -11,6 +11,7 @@ class Crafty: SBDevice {
     static let hasHeat: Bool = true
     static let hasAir: Bool = false
     static let hasBattery: Bool = true
+    static let hasScreen: Bool = false
 
     static let currentTempId = "00000011-4c45-4b43-4942-265a524f5453"
     static let selectedTempId = "00000021-4c45-4b43-4942-265a524f5453"

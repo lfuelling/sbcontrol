@@ -486,6 +486,9 @@
         }
       }
     },
+    "LED Brightness" : {
+
+    },
     "Loading data (%lld/%lld)…" : {
       "localizations" : {
         "de" : {
