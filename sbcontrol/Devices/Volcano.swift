@@ -106,11 +106,21 @@ class Volcano: SBDevice {
         },
         firmwareVersionId: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
-            log.info("Received firmwareVersion: \(intValue)")
+            if let versionString = String(data: data, encoding: .utf8) {
+                log.info("Received firmwareVersion: \(versionString) (\(intValue))")
+                bleManager.deviceFirmwareVersion = versionString
+            } else {
+                log.error("Unable to get version string!")
+            }
         },
         bleFirmwareVersionId: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })
-            log.info("Received bleFirmwareVersion: \(intValue)")
+            if let versionString = String(data: data, encoding: .utf8) {
+                log.info("Received bleFirmwareVersion: \(versionString) (\(intValue))")
+                bleManager.deviceBLEFirmwareVersion = versionString
+            } else {
+                log.error("Unable to get BLW version string!")
+            }
         },
         stat2Id: {data, bleManager in
             let intValue = UInt32(littleEndian: data.withUnsafeBytes { $0.load(as: UInt32.self) })

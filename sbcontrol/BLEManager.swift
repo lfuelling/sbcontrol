@@ -29,6 +29,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var batteryPercent = -1
     @Published var powerState = false
     @Published var serialNumber = ""
+    @Published var deviceFirmwareVersion = ""
+    @Published var deviceBLEFirmwareVersion = ""
     
     @Published var subscribedCharacteristics: [String] = []
     

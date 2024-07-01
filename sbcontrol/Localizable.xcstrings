@@ -17,6 +17,22 @@
         }
       }
     },
+    "%@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "de" : {
@@ -109,6 +125,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Air %@"
+          }
+        }
+      }
+    },
+    "BLE Firmware Version" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BLE Firmware Version"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BLE Firmware Version"
           }
         }
       }
@@ -352,6 +384,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error"
+          }
+        }
+      }
+    },
+    "Firmware Version" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Version"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Version"
           }
         }
       }

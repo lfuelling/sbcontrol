@@ -25,6 +25,22 @@ struct DeviceInformationSection: View {
                 Text(bleManager.serialNumber)
                     .monospaced()
             }
+            if(!bleManager.deviceFirmwareVersion.isEmpty) {
+                HStack {
+                    Text("Firmware Version")
+                        .bold()
+                    Spacer()
+                    Text("\(bleManager.deviceFirmwareVersion)")
+                }
+            }
+            if(!bleManager.deviceBLEFirmwareVersion.isEmpty) {
+                HStack {
+                    Text("BLE Firmware Version")
+                        .bold()
+                    Spacer()
+                    Text("\(bleManager.deviceBLEFirmwareVersion)")
+                }
+            }
         } header: {
             Text("Device Information")
         }
