@@ -110,12 +110,12 @@ class DeviceState: NSObject, ObservableObject, CBPeripheralDelegate {
         let characteristicId = characteristic.uuid.uuidString.lowercased()
         if (Volcano.compatibleIds.contains(characteristicId) ||
             Crafty.compatibleIds.contains(characteristicId)) {
-            log.debug("Reading initial value of \(characteristic.uuid.uuidString.lowercased())…")
+            log.debug("Reading initial value of \(characteristic.uuid.uuidString.lowercased())@\(characteristic.service?.uuid.uuidString ?? "unknown")…")
             peripheral.readValue(for: characteristic)
             
             if(Volcano.subscribableIds.contains(characteristicId) ||
                Crafty.subscribableIds.contains(characteristicId)) {
-                log.info("Activating notifications for \(characteristicId)…")
+                log.info("Activating notifications for \(characteristicId)@\(characteristic.service?.uuid.uuidString ?? "unknown")…")
                 peripheral.setNotifyValue(true, for: characteristic)
             }
         } else {
