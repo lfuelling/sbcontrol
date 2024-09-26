@@ -41,12 +41,8 @@ struct DeviceSelectionView: View {
 #else
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                Label {
-                    Text("Scanning…")
-                } icon: {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                }
+                ProgressView()
+                    .progressViewStyle(.circular)
             }
         }
 #endif

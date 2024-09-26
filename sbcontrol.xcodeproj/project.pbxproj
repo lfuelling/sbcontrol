@@ -53,7 +53,6 @@
 		CAA949AE2CA5FA1C00065AF5 /* SBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759C2C190F19003A984C /* SBDevice.swift */; };
 		CAA949AF2CA5FA2200065AF5 /* Volcano.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759A2C190314003A984C /* Volcano.swift */; };
 		CAA949B02CA5FA2700065AF5 /* Crafty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759E2C1910BA003A984C /* Crafty.swift */; };
-		CAA949B12CA5FA4300065AF5 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */; };
 		CAA949B22CA6020800065AF5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */; };
 		CAA949B42CA6027700065AF5 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA949B32CA6027300065AF5 /* DeviceDetailsView.swift */; };
 		CAA949B72CA6042900065AF5 /* DeviceDetailsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA949B62CA6042300065AF5 /* DeviceDetailsTemperatureSection.swift */; };
@@ -67,6 +66,7 @@
 		CACA759D2C190F21003A984C /* SBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759C2C190F19003A984C /* SBDevice.swift */; };
 		CACA759F2C1910BC003A984C /* Crafty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759E2C1910BA003A984C /* Crafty.swift */; };
 		CAEAB2A62C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB2A52C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift */; };
+		CAF9C59B2CA60E0D00FC14E3 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -366,9 +366,9 @@
 		CAA949992CA5F8CB00065AF5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CAA949B82CA6047B00065AF5 /* DeviceControls */,
-				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
 				CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */,
+				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
+				CAA949B82CA6047B00065AF5 /* DeviceControls */,
 				CA2F1C542C15CB6E00BD2BC9 /* DeviceSelection */,
 			);
 			path = Views;
@@ -653,11 +653,11 @@
 				CAA949B72CA6042900065AF5 /* DeviceDetailsTemperatureSection.swift in Sources */,
 				CAA949952CA5F89A00065AF5 /* MetricsState.swift in Sources */,
 				CAA949922CA5F75700065AF5 /* sbcwatchApp.swift in Sources */,
-				CAA949B12CA5FA4300065AF5 /* GraphView.swift in Sources */,
 				CAA949BC2CA604DD00065AF5 /* DeviceDetailsControlsSection.swift in Sources */,
 				CAA949AE2CA5FA1C00065AF5 /* SBDevice.swift in Sources */,
 				CAA949AC2CA5F9F800065AF5 /* LoaderView.swift in Sources */,
 				CAA949AD2CA5FA1700065AF5 /* DeviceDetermination.swift in Sources */,
+				CAF9C59B2CA60E0D00FC14E3 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
