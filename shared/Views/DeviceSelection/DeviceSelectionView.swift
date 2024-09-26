@@ -24,6 +24,7 @@ struct DeviceSelectionView: View {
             }
         }
         .navigationTitle("Device Selection")
+#if !os(watchOS)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Label {
@@ -36,7 +37,20 @@ struct DeviceSelectionView: View {
 #endif
                 }
             }
-        }.alert("Error", isPresented: Binding(get: {bleManager.bluetoothNotAvailable}, set: {_ in})) {
+        }
+#else
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Label {
+                    Text("Scanning…")
+                } icon: {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+            }
+        }
+#endif
+        .alert("Error", isPresented: Binding(get: {bleManager.bluetoothNotAvailable}, set: {_ in})) {
             Button {
                 exit(0)
             } label: {
