@@ -40,7 +40,7 @@ struct DeviceSelectionView: View {
         }
 #else
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItem(placement: .bottomBar) {
                 Label {
                     Text("Scanning…")
                 } icon: {
