@@ -46,18 +46,6 @@
 		CAA949972CA5F8A700065AF5 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */; };
 		CAA9499A2CA5F8F300065AF5 /* DeviceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C562C15CBC000BD2BC9 /* DeviceSelectionView.swift */; };
 		CAA9499B2CA5F8FE00065AF5 /* DeviceSelectionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C522C15C97300BD2BC9 /* DeviceSelectionRowView.swift */; };
-		CAA9499C2CA5F94E00065AF5 /* DeviceDetailsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5A2C166AF900BD2BC9 /* DeviceDetailsChartView.swift */; };
-		CAA9499D2CA5F95A00065AF5 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C502C15C7DF00BD2BC9 /* DeviceDetailsView.swift */; };
-		CAA9499E2CA5F96000065AF5 /* DeviceControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C582C16683F00BD2BC9 /* DeviceControlsView.swift */; };
-		CAA9499F2CA5F96700065AF5 /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
-		CAA949A02CA5F96D00065AF5 /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
-		CAA949A12CA5F97200065AF5 /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
-		CAA949A22CA5F97800065AF5 /* SelectedTemperatureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB2A52C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift */; };
-		CAA949A32CA5F97D00065AF5 /* TemperatureSelectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914252C1DF0F0003A0399 /* TemperatureSelectionSheet.swift */; };
-		CAA949A42CA5F98300065AF5 /* DeviceControlsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */; };
-		CAA949A52CA5F98900065AF5 /* DeviceSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D122C1CCD05003ADBBB /* DeviceSettingsSection.swift */; };
-		CAA949A62CA5F98F00065AF5 /* DeviceInformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D102C1CCCE0003ADBBB /* DeviceInformationSection.swift */; };
-		CAA949A72CA5F99500065AF5 /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C642C1684E300BD2BC9 /* DeviceSettingsView.swift */; };
 		CAA949A82CA5F9C600065AF5 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C4B2C15B26500BD2BC9 /* log.swift */; };
 		CAA949AB2CA5F9D300065AF5 /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = CAA949AA2CA5F9D300065AF5 /* XCGLogger */; };
 		CAA949AC2CA5F9F800065AF5 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914222C1DDD82003A0399 /* LoaderView.swift */; };
@@ -66,6 +54,12 @@
 		CAA949AF2CA5FA2200065AF5 /* Volcano.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759A2C190314003A984C /* Volcano.swift */; };
 		CAA949B02CA5FA2700065AF5 /* Crafty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759E2C1910BA003A984C /* Crafty.swift */; };
 		CAA949B12CA5FA4300065AF5 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */; };
+		CAA949B22CA6020800065AF5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */; };
+		CAA949B42CA6027700065AF5 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA949B32CA6027300065AF5 /* DeviceDetailsView.swift */; };
+		CAA949B72CA6042900065AF5 /* DeviceDetailsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA949B62CA6042300065AF5 /* DeviceDetailsTemperatureSection.swift */; };
+		CAA949B92CA604A000065AF5 /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
+		CAA949BA2CA604A600065AF5 /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
+		CAA949BC2CA604DD00065AF5 /* DeviceDetailsControlsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA949BB2CA604D200065AF5 /* DeviceDetailsControlsSection.swift */; };
 		CACA75942C18D171003A984C /* DeviceControlsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */; };
 		CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
 		CACA75982C18D2FD003A984C /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
@@ -150,6 +144,9 @@
 		CAA9498D2CA5F75700065AF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAA9498E2CA5F75700065AF5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sbcwatchApp.swift; sourceTree = "<group>"; };
+		CAA949B32CA6027300065AF5 /* DeviceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsView.swift; sourceTree = "<group>"; };
+		CAA949B62CA6042300065AF5 /* DeviceDetailsTemperatureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsTemperatureSection.swift; sourceTree = "<group>"; };
+		CAA949BB2CA604D200065AF5 /* DeviceDetailsControlsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsControlsSection.swift; sourceTree = "<group>"; };
 		CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsTemperatureSection.swift; sourceTree = "<group>"; };
 		CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsHeatButton.swift; sourceTree = "<group>"; };
 		CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsAirButton.swift; sourceTree = "<group>"; };
@@ -197,6 +194,7 @@
 		CA2F1C4D2C15C76C00BD2BC9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CA2F1C552C15CB7B00BD2BC9 /* DeviceDetails */,
 				CA2F1C662C16854E00BD2BC9 /* Settings */,
 			);
 			path = Views;
@@ -226,8 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				CA5914242C1DF0DC003A0399 /* Temperature */,
-				CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */,
-				CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */,
 				CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */,
 				CA2F1C582C16683F00BD2BC9 /* DeviceControlsView.swift */,
 			);
@@ -266,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
+				CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */,
 				CACA75992C190302003A984C /* Devices */,
 				CAA949992CA5F8CB00065AF5 /* Views */,
 				CAA949982CA5F8C300065AF5 /* State */,
@@ -306,7 +303,6 @@
 				CA2F1C422C14E26800BD2BC9 /* ContentView.swift */,
 				CA94E8742C147E76009D33E0 /* Assets.xcassets */,
 				CA94E8762C147E76009D33E0 /* sbcontrol.entitlements */,
-				CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */,
 				CA94E8772C147E76009D33E0 /* Preview Content */,
 			);
 			path = sbcontrol;
@@ -348,10 +344,11 @@
 		CAA949902CA5F75700065AF5 /* sbcwatch */ = {
 			isa = PBXGroup;
 			children = (
+				CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */,
+				CAA9498E2CA5F75700065AF5 /* ContentView.swift */,
+				CAA949B52CA603F300065AF5 /* DeviceDetails */,
 				CAA9498C2CA5F75700065AF5 /* Preview Content */,
 				CAA9498D2CA5F75700065AF5 /* Assets.xcassets */,
-				CAA9498E2CA5F75700065AF5 /* ContentView.swift */,
-				CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */,
 			);
 			path = sbcwatch;
 			sourceTree = "<group>";
@@ -369,9 +366,9 @@
 		CAA949992CA5F8CB00065AF5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CAA949B82CA6047B00065AF5 /* DeviceControls */,
 				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
 				CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */,
-				CA2F1C552C15CB7B00BD2BC9 /* DeviceDetails */,
 				CA2F1C542C15CB6E00BD2BC9 /* DeviceSelection */,
 			);
 			path = Views;
@@ -382,6 +379,25 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAA949B52CA603F300065AF5 /* DeviceDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CAA949B32CA6027300065AF5 /* DeviceDetailsView.swift */,
+				CAA949BB2CA604D200065AF5 /* DeviceDetailsControlsSection.swift */,
+				CAA949B62CA6042300065AF5 /* DeviceDetailsTemperatureSection.swift */,
+			);
+			path = DeviceDetails;
+			sourceTree = "<group>";
+		};
+		CAA949B82CA6047B00065AF5 /* DeviceControls */ = {
+			isa = PBXGroup;
+			children = (
+				CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */,
+				CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */,
+			);
+			path = DeviceControls;
 			sourceTree = "<group>";
 		};
 		CACA75992C190302003A984C /* Devices */ = {
@@ -560,6 +576,7 @@
 			files = (
 				CAA949932CA5F75700065AF5 /* Preview Assets.xcassets in Resources */,
 				CAA949942CA5F75700065AF5 /* Assets.xcassets in Resources */,
+				CAA949B22CA6020800065AF5 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,29 +641,22 @@
 			files = (
 				CAA949912CA5F75700065AF5 /* ContentView.swift in Sources */,
 				CAA9499B2CA5F8FE00065AF5 /* DeviceSelectionRowView.swift in Sources */,
+				CAA949B42CA6027700065AF5 /* DeviceDetailsView.swift in Sources */,
 				CAA949AF2CA5FA2200065AF5 /* Volcano.swift in Sources */,
-				CAA9499C2CA5F94E00065AF5 /* DeviceDetailsChartView.swift in Sources */,
 				CAA949962CA5F8A100065AF5 /* DeviceState.swift in Sources */,
 				CAA949972CA5F8A700065AF5 /* BLEManager.swift in Sources */,
-				CAA949A52CA5F98900065AF5 /* DeviceSettingsSection.swift in Sources */,
-				CAA949A22CA5F97800065AF5 /* SelectedTemperatureIndicator.swift in Sources */,
 				CAA9499A2CA5F8F300065AF5 /* DeviceSelectionView.swift in Sources */,
-				CAA949A72CA5F99500065AF5 /* DeviceSettingsView.swift in Sources */,
-				CAA9499E2CA5F96000065AF5 /* DeviceControlsView.swift in Sources */,
 				CAA949A82CA5F9C600065AF5 /* log.swift in Sources */,
-				CAA949A42CA5F98300065AF5 /* DeviceControlsTemperatureSection.swift in Sources */,
-				CAA949A12CA5F97200065AF5 /* DeviceControlsHeatButton.swift in Sources */,
+				CAA949B92CA604A000065AF5 /* DeviceControlsAirButton.swift in Sources */,
+				CAA949BA2CA604A600065AF5 /* DeviceControlsHeatButton.swift in Sources */,
 				CAA949B02CA5FA2700065AF5 /* Crafty.swift in Sources */,
+				CAA949B72CA6042900065AF5 /* DeviceDetailsTemperatureSection.swift in Sources */,
 				CAA949952CA5F89A00065AF5 /* MetricsState.swift in Sources */,
-				CAA949A02CA5F96D00065AF5 /* DeviceControlsAirButton.swift in Sources */,
 				CAA949922CA5F75700065AF5 /* sbcwatchApp.swift in Sources */,
-				CAA949A62CA5F98F00065AF5 /* DeviceInformationSection.swift in Sources */,
 				CAA949B12CA5FA4300065AF5 /* GraphView.swift in Sources */,
+				CAA949BC2CA604DD00065AF5 /* DeviceDetailsControlsSection.swift in Sources */,
 				CAA949AE2CA5FA1C00065AF5 /* SBDevice.swift in Sources */,
 				CAA949AC2CA5F9F800065AF5 /* LoaderView.swift in Sources */,
-				CAA949A32CA5F97D00065AF5 /* TemperatureSelectionSheet.swift in Sources */,
-				CAA9499F2CA5F96700065AF5 /* DeviceControlsBatterySection.swift in Sources */,
-				CAA9499D2CA5F95A00065AF5 /* DeviceDetailsView.swift in Sources */,
 				CAA949AD2CA5FA1700065AF5 /* DeviceDetermination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
