@@ -40,7 +40,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
             centralManager.scanForPeripherals(withServices: nil, options: nil)
         } else {
             log.error("Bluetooth not available!")
-            bluetoothNotAvailable = true
+            withAnimation {
+                self.connected = false
+                bluetoothNotAvailable = true
+            }
         }
     }
     

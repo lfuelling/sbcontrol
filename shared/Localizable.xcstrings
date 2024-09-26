@@ -678,6 +678,22 @@
         }
       }
     },
+    "Selected: %lld°C" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählt: %lld°C"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected: %lld°C"
+          }
+        }
+      }
+    },
     "Serial Number" : {
       "localizations" : {
         "de" : {
