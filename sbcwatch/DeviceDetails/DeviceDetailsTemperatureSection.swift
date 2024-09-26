@@ -13,19 +13,11 @@ struct DeviceDetailsTemperatureSection: View {
     
     var body: some View {
         Section {
-            VStack {
-                Text("Current: \(deviceState.currentTemperature)°C")
-                    .bold()
-                    .font(.title)
-                HStack(spacing: 0) {
-                    Text("Selected: ")
-                        .font(.title)
-                    VStack {
-                        Text("\(deviceState.selectedTemperature)°C")
-                            .font(.title)
-                    }
-                }
-            }.padding()
+            Text("Current: \(deviceState.currentTemperature)°C")
+                .bold()
+                .font(.title)
+            Text("Selected: \(deviceState.selectedTemperature)°C")
+                .font(.title)
             HStack {
                 Button {
                     let _ = deviceState.decreaseTemperature()
@@ -36,6 +28,7 @@ struct DeviceDetailsTemperatureSection: View {
                             .font(.largeTitle)
                     }.padding(4)
                 }.disabled(deviceState.selectedTemperature <= 57 || deviceState.writingValue)
+                Spacer()
                 Button {
                     let _ = deviceState.increaseTemperature()
                 } label: {
