@@ -36,7 +36,7 @@
 		CA94E8832C147E77009D33E0 /* sbcontrolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E8822C147E77009D33E0 /* sbcontrolTests.swift */; };
 		CA94E88D2C147E77009D33E0 /* sbcontrolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E88C2C147E77009D33E0 /* sbcontrolUITests.swift */; };
 		CA94E88F2C147E77009D33E0 /* sbcontrolUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E88E2C147E77009D33E0 /* sbcontrolUITestsLaunchTests.swift */; };
-		CAA949862CA5F73200065AF5 /* sbcwatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CAA949792CA5F73100065AF5 /* sbcwatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CAA949862CA5F73200065AF5 /* sbcwatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CAA949792CA5F73100065AF5 /* sbcwatch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CAA949912CA5F75700065AF5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9498E2CA5F75700065AF5 /* ContentView.swift */; };
 		CAA949922CA5F75700065AF5 /* sbcwatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */; };
 		CAA949932CA5F75700065AF5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA9498B2CA5F75700065AF5 /* Preview Assets.xcassets */; };
@@ -665,6 +665,7 @@
 		};
 		CAA949852CA5F73200065AF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = CAA949782CA5F73100065AF5 /* sbcwatch */;
 			targetProxy = CAA949842CA5F73200065AF5 /* PBXContainerItemProxy */;
 		};
