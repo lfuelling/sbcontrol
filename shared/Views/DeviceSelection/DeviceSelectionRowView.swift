@@ -24,9 +24,13 @@ struct DeviceSelectionRowView: View {
                     .fontWeight(hovering ? .bold : .regular)
                 Spacer()
             }
-        }.onHover { hovering in
+        }
+#if !os(watchOS)
+        .onHover { hovering in
             self.hovering = hovering
         }
+#endif
+
 #if os(macOS)
         .onChange(of: hovering) {
             DispatchQueue.main.async {

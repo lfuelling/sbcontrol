@@ -36,6 +36,36 @@
 		CA94E8832C147E77009D33E0 /* sbcontrolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E8822C147E77009D33E0 /* sbcontrolTests.swift */; };
 		CA94E88D2C147E77009D33E0 /* sbcontrolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E88C2C147E77009D33E0 /* sbcontrolUITests.swift */; };
 		CA94E88F2C147E77009D33E0 /* sbcontrolUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94E88E2C147E77009D33E0 /* sbcontrolUITestsLaunchTests.swift */; };
+		CAA949862CA5F73200065AF5 /* sbcwatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CAA949792CA5F73100065AF5 /* sbcwatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CAA949912CA5F75700065AF5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9498E2CA5F75700065AF5 /* ContentView.swift */; };
+		CAA949922CA5F75700065AF5 /* sbcwatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */; };
+		CAA949932CA5F75700065AF5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA9498B2CA5F75700065AF5 /* Preview Assets.xcassets */; };
+		CAA949942CA5F75700065AF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA9498D2CA5F75700065AF5 /* Assets.xcassets */; };
+		CAA949952CA5F89A00065AF5 /* MetricsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B28802C3333E200F0FF5A /* MetricsState.swift */; };
+		CAA949962CA5F8A100065AF5 /* DeviceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B287E2C3333D900F0FF5A /* DeviceState.swift */; };
+		CAA949972CA5F8A700065AF5 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */; };
+		CAA9499A2CA5F8F300065AF5 /* DeviceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C562C15CBC000BD2BC9 /* DeviceSelectionView.swift */; };
+		CAA9499B2CA5F8FE00065AF5 /* DeviceSelectionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C522C15C97300BD2BC9 /* DeviceSelectionRowView.swift */; };
+		CAA9499C2CA5F94E00065AF5 /* DeviceDetailsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5A2C166AF900BD2BC9 /* DeviceDetailsChartView.swift */; };
+		CAA9499D2CA5F95A00065AF5 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C502C15C7DF00BD2BC9 /* DeviceDetailsView.swift */; };
+		CAA9499E2CA5F96000065AF5 /* DeviceControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C582C16683F00BD2BC9 /* DeviceControlsView.swift */; };
+		CAA9499F2CA5F96700065AF5 /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
+		CAA949A02CA5F96D00065AF5 /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
+		CAA949A12CA5F97200065AF5 /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
+		CAA949A22CA5F97800065AF5 /* SelectedTemperatureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB2A52C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift */; };
+		CAA949A32CA5F97D00065AF5 /* TemperatureSelectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914252C1DF0F0003A0399 /* TemperatureSelectionSheet.swift */; };
+		CAA949A42CA5F98300065AF5 /* DeviceControlsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */; };
+		CAA949A52CA5F98900065AF5 /* DeviceSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D122C1CCD05003ADBBB /* DeviceSettingsSection.swift */; };
+		CAA949A62CA5F98F00065AF5 /* DeviceInformationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D102C1CCCE0003ADBBB /* DeviceInformationSection.swift */; };
+		CAA949A72CA5F99500065AF5 /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C642C1684E300BD2BC9 /* DeviceSettingsView.swift */; };
+		CAA949A82CA5F9C600065AF5 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C4B2C15B26500BD2BC9 /* log.swift */; };
+		CAA949AB2CA5F9D300065AF5 /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = CAA949AA2CA5F9D300065AF5 /* XCGLogger */; };
+		CAA949AC2CA5F9F800065AF5 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5914222C1DDD82003A0399 /* LoaderView.swift */; };
+		CAA949AD2CA5FA1700065AF5 /* DeviceDetermination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0C2C1CAD15003ADBBB /* DeviceDetermination.swift */; };
+		CAA949AE2CA5FA1C00065AF5 /* SBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759C2C190F19003A984C /* SBDevice.swift */; };
+		CAA949AF2CA5FA2200065AF5 /* Volcano.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759A2C190314003A984C /* Volcano.swift */; };
+		CAA949B02CA5FA2700065AF5 /* Crafty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759E2C1910BA003A984C /* Crafty.swift */; };
+		CAA949B12CA5FA4300065AF5 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */; };
 		CACA75942C18D171003A984C /* DeviceControlsTemperatureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */; };
 		CACA75962C18D251003A984C /* DeviceControlsHeatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */; };
 		CACA75982C18D2FD003A984C /* DeviceControlsAirButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */; };
@@ -60,7 +90,28 @@
 			remoteGlobalIDString = CA94E86C2C147E75009D33E0;
 			remoteInfo = sbcontrol;
 		};
+		CAA949842CA5F73200065AF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA94E8652C147E75009D33E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAA949782CA5F73100065AF5;
+			remoteInfo = "sbcwatch Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CAA9498A2CA5F73200065AF5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				CAA949862CA5F73200065AF5 /* sbcwatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
@@ -94,6 +145,11 @@
 		CA94E8882C147E77009D33E0 /* sbcontrolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sbcontrolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA94E88C2C147E77009D33E0 /* sbcontrolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sbcontrolUITests.swift; sourceTree = "<group>"; };
 		CA94E88E2C147E77009D33E0 /* sbcontrolUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sbcontrolUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CAA949792CA5F73100065AF5 /* sbcwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sbcwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAA9498B2CA5F75700065AF5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CAA9498D2CA5F75700065AF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAA9498E2CA5F75700065AF5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sbcwatchApp.swift; sourceTree = "<group>"; };
 		CACA75932C18D14A003A984C /* DeviceControlsTemperatureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsTemperatureSection.swift; sourceTree = "<group>"; };
 		CACA75952C18D251003A984C /* DeviceControlsHeatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsHeatButton.swift; sourceTree = "<group>"; };
 		CACA75972C18D2F7003A984C /* DeviceControlsAirButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsAirButton.swift; sourceTree = "<group>"; };
@@ -127,6 +183,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CAA949762CA5F73100065AF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAA949AB2CA5F9D300065AF5 /* XCGLogger in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,10 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				CA2F1C662C16854E00BD2BC9 /* Settings */,
-				CA2F1C552C15CB7B00BD2BC9 /* DeviceDetails */,
-				CA2F1C542C15CB6E00BD2BC9 /* DeviceSelection */,
-				CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */,
-				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,22 +262,26 @@
 			path = Temperature;
 			sourceTree = "<group>";
 		};
-		CA5B287C2C3333B600F0FF5A /* State */ = {
+		CA5B287C2C3333B600F0FF5A /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				CA5B28802C3333E200F0FF5A /* MetricsState.swift */,
-				CA5B287E2C3333D900F0FF5A /* DeviceState.swift */,
-				CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */,
+				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
+				CACA75992C190302003A984C /* Devices */,
+				CAA949992CA5F8CB00065AF5 /* Views */,
+				CAA949982CA5F8C300065AF5 /* State */,
 			);
-			path = State;
+			path = shared;
 			sourceTree = "<group>";
 		};
 		CA94E8642C147E75009D33E0 = {
 			isa = PBXGroup;
 			children = (
+				CA5B287C2C3333B600F0FF5A /* shared */,
 				CA94E86F2C147E75009D33E0 /* sbcontrol */,
+				CAA949902CA5F75700065AF5 /* sbcwatch */,
 				CA94E8812C147E77009D33E0 /* sbcontrolTests */,
 				CA94E88B2C147E77009D33E0 /* sbcontrolUITests */,
+				CAA949A92CA5F9D300065AF5 /* Frameworks */,
 				CA94E86E2C147E75009D33E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -228,6 +292,7 @@
 				CA94E86D2C147E75009D33E0 /* sbcontrol.app */,
 				CA94E87E2C147E77009D33E0 /* sbcontrolTests.xctest */,
 				CA94E8882C147E77009D33E0 /* sbcontrolUITests.xctest */,
+				CAA949792CA5F73100065AF5 /* sbcwatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,13 +300,10 @@
 		CA94E86F2C147E75009D33E0 /* sbcontrol */ = {
 			isa = PBXGroup;
 			children = (
-				CA5B287C2C3333B600F0FF5A /* State */,
-				CACA75992C190302003A984C /* Devices */,
 				CA2F1C4D2C15C76C00BD2BC9 /* Views */,
 				CA94E8702C147E75009D33E0 /* sbcontrolApp.swift */,
 				CA2F1C692C16858C00BD2BC9 /* AppDelegate.swift */,
 				CA2F1C422C14E26800BD2BC9 /* ContentView.swift */,
-				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
 				CA94E8742C147E76009D33E0 /* Assets.xcassets */,
 				CA94E8762C147E76009D33E0 /* sbcontrol.entitlements */,
 				CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */,
@@ -275,6 +337,53 @@
 			path = sbcontrolUITests;
 			sourceTree = "<group>";
 		};
+		CAA9498C2CA5F75700065AF5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CAA9498B2CA5F75700065AF5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAA949902CA5F75700065AF5 /* sbcwatch */ = {
+			isa = PBXGroup;
+			children = (
+				CAA9498C2CA5F75700065AF5 /* Preview Content */,
+				CAA9498D2CA5F75700065AF5 /* Assets.xcassets */,
+				CAA9498E2CA5F75700065AF5 /* ContentView.swift */,
+				CAA9498F2CA5F75700065AF5 /* sbcwatchApp.swift */,
+			);
+			path = sbcwatch;
+			sourceTree = "<group>";
+		};
+		CAA949982CA5F8C300065AF5 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				CA5B28802C3333E200F0FF5A /* MetricsState.swift */,
+				CA5B287E2C3333D900F0FF5A /* DeviceState.swift */,
+				CA2F1C402C14E24F00BD2BC9 /* BLEManager.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		CAA949992CA5F8CB00065AF5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
+				CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */,
+				CA2F1C552C15CB7B00BD2BC9 /* DeviceDetails */,
+				CA2F1C542C15CB6E00BD2BC9 /* DeviceSelection */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CAA949A92CA5F9D300065AF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CACA75992C190302003A984C /* Devices */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,10 +405,12 @@
 				CA94E8692C147E75009D33E0 /* Sources */,
 				CA94E86A2C147E75009D33E0 /* Frameworks */,
 				CA94E86B2C147E75009D33E0 /* Resources */,
+				CAA9498A2CA5F73200065AF5 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CAA949852CA5F73200065AF5 /* PBXTargetDependency */,
 			);
 			name = sbcontrol;
 			packageProductDependencies = (
@@ -346,6 +457,26 @@
 			productReference = CA94E8882C147E77009D33E0 /* sbcontrolUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CAA949782CA5F73100065AF5 /* sbcwatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAA949872CA5F73200065AF5 /* Build configuration list for PBXNativeTarget "sbcwatch" */;
+			buildPhases = (
+				CAA949752CA5F73100065AF5 /* Sources */,
+				CAA949762CA5F73100065AF5 /* Frameworks */,
+				CAA949772CA5F73100065AF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sbcwatch;
+			packageProductDependencies = (
+				CAA949AA2CA5F9D300065AF5 /* XCGLogger */,
+			);
+			productName = "sbcwatch Watch App";
+			productReference = CAA949792CA5F73100065AF5 /* sbcwatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -353,7 +484,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					CA94E86C2C147E75009D33E0 = {
@@ -366,6 +497,9 @@
 					CA94E8872C147E77009D33E0 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = CA94E86C2C147E75009D33E0;
+					};
+					CAA949782CA5F73100065AF5 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
@@ -389,6 +523,7 @@
 				CA94E86C2C147E75009D33E0 /* sbcontrol */,
 				CA94E87D2C147E77009D33E0 /* sbcontrolTests */,
 				CA94E8872C147E77009D33E0 /* sbcontrolUITests */,
+				CAA949782CA5F73100065AF5 /* sbcwatch */,
 			);
 		};
 /* End PBXProject section */
@@ -415,6 +550,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAA949772CA5F73100065AF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAA949932CA5F75700065AF5 /* Preview Assets.xcassets in Resources */,
+				CAA949942CA5F75700065AF5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +617,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CAA949752CA5F73100065AF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAA949912CA5F75700065AF5 /* ContentView.swift in Sources */,
+				CAA9499B2CA5F8FE00065AF5 /* DeviceSelectionRowView.swift in Sources */,
+				CAA949AF2CA5FA2200065AF5 /* Volcano.swift in Sources */,
+				CAA9499C2CA5F94E00065AF5 /* DeviceDetailsChartView.swift in Sources */,
+				CAA949962CA5F8A100065AF5 /* DeviceState.swift in Sources */,
+				CAA949972CA5F8A700065AF5 /* BLEManager.swift in Sources */,
+				CAA949A52CA5F98900065AF5 /* DeviceSettingsSection.swift in Sources */,
+				CAA949A22CA5F97800065AF5 /* SelectedTemperatureIndicator.swift in Sources */,
+				CAA9499A2CA5F8F300065AF5 /* DeviceSelectionView.swift in Sources */,
+				CAA949A72CA5F99500065AF5 /* DeviceSettingsView.swift in Sources */,
+				CAA9499E2CA5F96000065AF5 /* DeviceControlsView.swift in Sources */,
+				CAA949A82CA5F9C600065AF5 /* log.swift in Sources */,
+				CAA949A42CA5F98300065AF5 /* DeviceControlsTemperatureSection.swift in Sources */,
+				CAA949A12CA5F97200065AF5 /* DeviceControlsHeatButton.swift in Sources */,
+				CAA949B02CA5FA2700065AF5 /* Crafty.swift in Sources */,
+				CAA949952CA5F89A00065AF5 /* MetricsState.swift in Sources */,
+				CAA949A02CA5F96D00065AF5 /* DeviceControlsAirButton.swift in Sources */,
+				CAA949922CA5F75700065AF5 /* sbcwatchApp.swift in Sources */,
+				CAA949A62CA5F98F00065AF5 /* DeviceInformationSection.swift in Sources */,
+				CAA949B12CA5FA4300065AF5 /* GraphView.swift in Sources */,
+				CAA949AE2CA5FA1C00065AF5 /* SBDevice.swift in Sources */,
+				CAA949AC2CA5F9F800065AF5 /* LoaderView.swift in Sources */,
+				CAA949A32CA5F97D00065AF5 /* TemperatureSelectionSheet.swift in Sources */,
+				CAA9499F2CA5F96700065AF5 /* DeviceControlsBatterySection.swift in Sources */,
+				CAA9499D2CA5F95A00065AF5 /* DeviceDetailsView.swift in Sources */,
+				CAA949AD2CA5FA1700065AF5 /* DeviceDetermination.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -485,6 +662,11 @@
 			isa = PBXTargetDependency;
 			target = CA94E86C2C147E75009D33E0 /* sbcontrol */;
 			targetProxy = CA94E8892C147E77009D33E0 /* PBXContainerItemProxy */;
+		};
+		CAA949852CA5F73200065AF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAA949782CA5F73100065AF5 /* sbcwatch */;
+			targetProxy = CAA949842CA5F73200065AF5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -690,7 +872,6 @@
 		CA94E8962C147E77009D33E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -713,7 +894,6 @@
 		CA94E8972C147E77009D33E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -736,7 +916,6 @@
 		CA94E8992C147E77009D33E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QW822SWXUV;
@@ -758,7 +937,6 @@
 		CA94E89A2C147E77009D33E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QW822SWXUV;
@@ -774,6 +952,67 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = sbcontrol;
+			};
+			name = Release;
+		};
+		CAA949882CA5F73200065AF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"sbcwatch/Preview Content\"";
+				DEVELOPMENT_TEAM = QW822SWXUV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = sbcwatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = sh.lrk.sbcontrol;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sh.lrk.sbcontrol.watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		CAA949892CA5F73200065AF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"sbcwatch/Preview Content\"";
+				DEVELOPMENT_TEAM = QW822SWXUV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = sbcwatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = sh.lrk.sbcontrol;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sh.lrk.sbcontrol.watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
@@ -816,6 +1055,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		CAA949872CA5F73200065AF5 /* Build configuration list for PBXNativeTarget "sbcwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAA949882CA5F73200065AF5 /* Debug */,
+				CAA949892CA5F73200065AF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -836,6 +1084,11 @@
 			productName = ObjcExceptionBridging;
 		};
 		CA2F1C472C15B02700BD2BC9 /* XCGLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA2F1C442C15B02700BD2BC9 /* XCRemoteSwiftPackageReference "XCGLogger" */;
+			productName = XCGLogger;
+		};
+		CAA949AA2CA5F9D300065AF5 /* XCGLogger */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CA2F1C442C15B02700BD2BC9 /* XCRemoteSwiftPackageReference "XCGLogger" */;
 			productName = XCGLogger;

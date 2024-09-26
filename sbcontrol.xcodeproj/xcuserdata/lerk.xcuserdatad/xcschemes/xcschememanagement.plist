@@ -9,6 +9,39 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>sbcwatch.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CA94E86C2C147E75009D33E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA94E87D2C147E77009D33E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA94E8872C147E77009D33E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CAA9495F2CA5F5CB00065AF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CAA949782CA5F73100065AF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

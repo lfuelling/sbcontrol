@@ -21,9 +21,11 @@ struct SelectedTemperatureIndicator: View {
         .onTapGesture {
             sheetVisible = true
         }
+#if !os(watchOS)
         .onHover { hovering in
             self.hovering = hovering
         }
+#endif
         .sheet(isPresented: $sheetVisible) {
             TemperatureSelectionSheet()
             #if os(macOS)
