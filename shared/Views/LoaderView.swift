@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoaderView: View {
     @EnvironmentObject private var deviceState: DeviceState
+    @EnvironmentObject private var bleManager: BLEManager
     
     var body: some View {
         VStack {
@@ -22,6 +23,13 @@ struct LoaderView: View {
                         Text("Determining Device…")
                             .foregroundStyle(.secondary)
                             .padding(4)
+                            .onAppear {
+                                if !bleManager.connected {
+                                    withAnimation {
+                                        deviceState.connected = false
+                                    }
+                                }
+                            }
                     } else {
                         let current = deviceState.subscribedCharacteristics.count + 1
                         let total: Int = switch(deviceState.deviceDetermination) {

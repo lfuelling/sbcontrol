@@ -160,8 +160,14 @@ class DeviceState: NSObject, ObservableObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
+#if os(watchOS)
+            WKInterfaceDevice.current().play(.failure)
+#endif
             log.error("Error writing characteristic value: \(error.localizedDescription)")
         } else {
+#if os(watchOS)
+            WKInterfaceDevice.current().play(.success)
+#endif
             log.info("Successfully wrote value for characteristic \(characteristic.uuid)!")
             peripheral.readValue(for: characteristic)
         }

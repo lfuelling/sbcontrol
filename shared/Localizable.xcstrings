@@ -17,6 +17,38 @@
         }
       }
     },
+    "-5" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-5"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-5"
+          }
+        }
+      }
+    },
+    "%.0f°C" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f°C"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f°C"
+          }
+        }
+      }
+    },
     "%@" : {
       "localizations" : {
         "de" : {
@@ -29,6 +61,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
+          }
+        }
+      }
+    },
+    "%lf°C" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lf°C"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lf°C"
           }
         }
       }
@@ -109,6 +157,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "+"
+          }
+        }
+      }
+    },
+    "+5" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+5"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+5"
           }
         }
       }
@@ -221,22 +285,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connecting…"
-          }
-        }
-      }
-    },
-    "Controls" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Steuerung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Controls"
           }
         }
       }
@@ -518,6 +566,22 @@
         }
       }
     },
+    "Info" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        }
+      }
+    },
     "Initializing…" : {
       "localizations" : {
         "de" : {
@@ -710,6 +774,22 @@
         }
       }
     },
+    "Set Temperature" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatur Einstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Temperature"
+          }
+        }
+      }
+    },
     "Settings" : {
       "localizations" : {
         "de" : {
@@ -722,22 +802,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings"
-          }
-        }
-      }
-    },
-    "Temperature" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temperatur"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temperature"
           }
         }
       }

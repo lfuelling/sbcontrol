@@ -48,7 +48,7 @@ struct GraphView: View {
         }
     }
     
-    var label: String
+    var label: String?
     var data: [DataSeries]
     var minValue: Double = 0
     var maxValue: Double = 100
@@ -65,9 +65,11 @@ struct GraphView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(label)
-                .font(.title2)
-                .padding(.bottom)
+            if let label = label {
+                Text(label)
+                    .font(.title2)
+                    .padding(.bottom)
+            }
             Chart(data) { dataSeries in
                 if(dataSeries.booleanValue) {
                     ForEach(dataSeries.data) { data in
@@ -84,7 +86,7 @@ struct GraphView: View {
                         LineMark(x: .value(xLabel, Date(timeIntervalSince1970: data.time)),
                                  y: .value(yLabel, data.value))
                     }
-                    .foregroundStyle(by: .value(label, dataSeries.label)) // TODO: use color from series
+                    .foregroundStyle(by: .value(label ?? "Data", dataSeries.label)) // TODO: use color from series
                 }
             }
             .chartYScale(domain: minValue...maxValue)
