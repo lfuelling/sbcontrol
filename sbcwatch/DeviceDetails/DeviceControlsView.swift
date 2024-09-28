@@ -23,6 +23,26 @@ struct DeviceControlsView: View {
                 }
             } label: {
                 VStack {
+                    if(deviceState.deviceDetermination.hasBattery) {
+                        if(deviceState.powerState) {
+                            Image(systemName: "battery.100percent.bolt")
+                                .foregroundColor(.green)
+                        } else if(deviceState.batteryPercent == -1) {
+                            Image(systemName: "battery.0percent")
+                                .foregroundColor(.secondary)
+                        } else if(deviceState.batteryPercent < 10) {
+                            Image(systemName: "battery.0percent")
+                                .foregroundColor(.red)
+                        } else if(deviceState.batteryPercent < 50) {
+                            Image(systemName: "battery.25percent")
+                        } else if(deviceState.batteryPercent < 75) {
+                            Image(systemName: "battery.50percent")
+                        } else if(deviceState.batteryPercent < 90) {
+                            Image(systemName: "battery.75percent")
+                        } else {
+                            Image(systemName: "battery.100percent")
+                        }
+                    }
                     Text("Current: \(deviceState.currentTemperature)°C")
                         .bold()
                     Text("Selected: \(deviceState.selectedTemperature)°C")
