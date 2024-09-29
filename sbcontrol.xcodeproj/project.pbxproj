@@ -62,6 +62,7 @@
 		CACA759B2C190317003A984C /* Volcano.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759A2C190314003A984C /* Volcano.swift */; };
 		CACA759D2C190F21003A984C /* SBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759C2C190F19003A984C /* SBDevice.swift */; };
 		CACA759F2C1910BC003A984C /* Crafty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759E2C1910BA003A984C /* Crafty.swift */; };
+		CAD4A2D42CA97B910033BB88 /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
 		CAEAB2A62C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB2A52C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift */; };
 		CAF9C59B2CA60E0D00FC14E3 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */; };
 		CAF9C5A02CA85E5900FC14E3 /* DeviceControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9C59F2CA85E5800FC14E3 /* DeviceControlsView.swift */; };
@@ -227,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				CA5914242C1DF0DC003A0399 /* Temperature */,
-				CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */,
 				CA2F1C582C16683F00BD2BC9 /* DeviceControlsView.swift */,
 			);
 			path = Control;
@@ -373,6 +373,7 @@
 			children = (
 				CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */,
 				CA5914222C1DDD82003A0399 /* LoaderView.swift */,
+				CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */,
 				CA2F1C542C15CB6E00BD2BC9 /* DeviceSelection */,
 			);
 			path = Views;
@@ -645,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA949912CA5F75700065AF5 /* ContentView.swift in Sources */,
+				CAD4A2D42CA97B910033BB88 /* DeviceControlsBatterySection.swift in Sources */,
 				CAA9499B2CA5F8FE00065AF5 /* DeviceSelectionRowView.swift in Sources */,
 				CAA949B42CA6027700065AF5 /* DeviceDetailsView.swift in Sources */,
 				CAA949AF2CA5FA2200065AF5 /* Volcano.swift in Sources */,

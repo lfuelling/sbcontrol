@@ -18,6 +18,7 @@ struct DeviceControlsView: View {
                 Spacer()
                 VStack(spacing: 2) {
                     DeviceControlsBatterySection()
+                        .font(.title)
                     DeviceControlsTemperatureSection()
                 }
                 Spacer()
@@ -26,6 +27,7 @@ struct DeviceControlsView: View {
         } else {
             VStack {
                 DeviceControlsBatterySection()
+                    .font(.title)
                 DeviceControlsHeatButton()
                 DeviceControlsTemperatureSection()
             }.padding()
@@ -33,6 +35,7 @@ struct DeviceControlsView: View {
 #else
         VStack {
             DeviceControlsBatterySection()
+                .font(.title)
             DeviceControlsTemperatureSection()
             DeviceControlsHeatButton()
             if(deviceState.deviceDetermination.hasAir) {

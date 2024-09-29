@@ -33,7 +33,7 @@ struct DeviceControlsBatterySection: View {
                 } else {
                     Image(systemName: "battery.100percent")
                 }
-            }.font(.title)
+            }
         }
     }
 }
