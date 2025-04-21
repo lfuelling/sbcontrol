@@ -20,7 +20,7 @@ You can build the app yourself and create beta builds but Apple will not let you
 
 **Another warning: The BLE communication with Storz & Bickel devices is not secured at all. The only thing giving security is that you can't connect a second device while one is already connected, that's not a bug/feature of this app, it's how the devices work.**
 
-**Final warning: as it says in the license, this code is provided as-is, without any warranties. Interacting with real-world deices, especially those that get hot on purpose can be dangerous. Don't let your device unattended, especially not in a switched-on state.**
+**Final warning: as it says in the license, this code is provided as-is, without any warranties. Interacting with real-world devices, especially those that get hot on purpose can be dangerous. Don't let your device unattended, especially not in a switched-on state.**
 
 ## Logo License
 
