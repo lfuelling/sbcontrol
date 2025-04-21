@@ -8,7 +8,7 @@ This app can be built for:
 - iPadOS
 - watchOS
 
-And will allow you to control the features of your Storz & Bickel devices using your Apple devices (currently tested with Volcano and Crafty, but the rest should work as well).
+And will allow you to control the features of your Storz & Bickel devices using your Apple devices (currently only Volcano and Crafty).
 
 ![watchOS screenshot](screenshots/watchos.png)
 
