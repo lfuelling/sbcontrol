@@ -64,6 +64,8 @@
 		CACA759F2C1910BC003A984C /* Crafty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA759E2C1910BA003A984C /* Crafty.swift */; };
 		CAD4A2D42CA97B910033BB88 /* DeviceControlsBatterySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5B8D0E2C1CC49A003ADBBB /* DeviceControlsBatterySection.swift */; };
 		CAEAB2A62C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB2A52C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift */; };
+		CAF7A0702DF95CFD0041ED44 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CAF7A06F2DF95CFD0041ED44 /* AppIcon.icon */; };
+		CAF7A0712DF95CFD0041ED44 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CAF7A06F2DF95CFD0041ED44 /* AppIcon.icon */; };
 		CAF9C59B2CA60E0D00FC14E3 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F1C5E2C166CAF00BD2BC9 /* GraphView.swift */; };
 		CAF9C5A02CA85E5900FC14E3 /* DeviceControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9C59F2CA85E5800FC14E3 /* DeviceControlsView.swift */; };
 		CAF9C5A42CA85E6700FC14E3 /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9C5A32CA85E6600FC14E3 /* DeviceInfoView.swift */; };
@@ -153,6 +155,7 @@
 		CACA759C2C190F19003A984C /* SBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBDevice.swift; sourceTree = "<group>"; };
 		CACA759E2C1910BA003A984C /* Crafty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crafty.swift; sourceTree = "<group>"; };
 		CAEAB2A52C1DF5EB008CE748 /* SelectedTemperatureIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTemperatureIndicator.swift; sourceTree = "<group>"; };
+		CAF7A06F2DF95CFD0041ED44 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		CAF9C59C2CA6103400FC14E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CAF9C59D2CA610BD00FC14E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CAF9C59F2CA85E5800FC14E3 /* DeviceControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControlsView.swift; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				CA2F1C4B2C15B26500BD2BC9 /* log.swift */,
+				CAF7A06F2DF95CFD0041ED44 /* AppIcon.icon */,
 				CA5B8D0A2C1CABD3003ADBBB /* Localizable.xcstrings */,
 				CACA75992C190302003A984C /* Devices */,
 				CAA949992CA5F8CB00065AF5 /* Views */,
@@ -557,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA94E8792C147E76009D33E0 /* Preview Assets.xcassets in Resources */,
+				CAF7A0702DF95CFD0041ED44 /* AppIcon.icon in Resources */,
 				CA94E8752C147E76009D33E0 /* Assets.xcassets in Resources */,
 				CA5B8D0B2C1CABD3003ADBBB /* Localizable.xcstrings in Resources */,
 			);
@@ -581,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA949932CA5F75700065AF5 /* Preview Assets.xcassets in Resources */,
+				CAF7A0712DF95CFD0041ED44 /* AppIcon.icon in Resources */,
 				CAA949942CA5F75700065AF5 /* Assets.xcassets in Resources */,
 				CAA949B22CA6020800065AF5 /* Localizable.xcstrings in Resources */,
 			);
